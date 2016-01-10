@@ -1,0 +1,1 @@
+Add in right click on spin button to spin other way

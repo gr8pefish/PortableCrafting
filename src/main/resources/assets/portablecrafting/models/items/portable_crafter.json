@@ -1,0 +1,6 @@
+{
+  "parent": "portablecrafting:item/base_item",
+  "textures": {
+    "layer0": "portablecrafting:items/portable_crafter"
+  }
+}

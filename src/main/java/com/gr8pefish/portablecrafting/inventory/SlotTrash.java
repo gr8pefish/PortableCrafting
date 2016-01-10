@@ -1,0 +1,32 @@
+package com.gr8pefish.portablecrafting.inventory;
+
+import net.minecraft.inventory.IInventory;
+import net.minecraft.inventory.Slot;
+
+public class SlotTrash extends Slot {
+
+    public SlotTrash(IInventory p_i1824_1_, int p_i1824_2_, int p_i1824_3_, int p_i1824_4_) {
+        super(p_i1824_1_, p_i1824_2_, p_i1824_3_, p_i1824_4_);
+    }
+
+//    /**
+//     * Helper method to put a stack in the slot.
+//     *
+//     * @param itemStack
+//     */
+//    @Override
+//    public void putStack(ItemStack itemStack)
+//    {
+//        if (itemStack != null) {
+//            for (int i = 0; i < 64; i++) {
+//                if (this.inventory.getStackInSlot(i) == null)
+//                {
+//                    this.inventory.setInventorySlotContents(i, itemStack);
+//                    return;
+//                }
+//            }
+//        }
+//        this.inventory.setInventorySlotContents(getSlotIndex(), itemStack);
+//        this.onSlotChanged();
+//    }
+}

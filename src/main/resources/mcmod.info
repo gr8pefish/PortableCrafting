@@ -1,0 +1,14 @@
+[{
+  "modid": "portablecrafting",
+  "name": "Portable Crafting",
+  "description": "Stores crafting items, nifty buttons, just a handy little mod.",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["gr8pefish"],
+  "credits": "Sapient (iBench)",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}]
