@@ -44,9 +44,6 @@ public class InventoryRenderHelper {
         String resName = domain + name;
 
         ModelBakery.addVariantName(item, resName);
-        System.out.println(item.toString());
-        System.out.println(resName.toString());
-        System.out.println(meta);
         ModelLoader.setCustomModelResourceLocation(item, meta, new ModelResourceLocation(resName, "inventory"));
     }
 

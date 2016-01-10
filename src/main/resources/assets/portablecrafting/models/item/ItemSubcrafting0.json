@@ -1,5 +1,5 @@
 {
-  "parent": "portablecrafting:item/base_item",
+  "parent": "portablecrafting:item/base_model",
   "textures": {
     "layer0": "portablecrafting:items/crafting_core"
   }

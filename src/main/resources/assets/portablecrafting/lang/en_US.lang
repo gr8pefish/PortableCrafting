@@ -1,7 +1,7 @@
 # Item Localizations
 item.portablecrafting:portable_crafter.name=Portable Crafter
-item.portablecrafting:blueprints.name=Blueprints
-item.portablecrafting:crafting_core.name=Crafting Core
+item.portablecrafting:subcrafting.blueprints.name=Blueprints
+item.portablecrafting:subcrafting.crafting_core.name=Crafting Core
 
 # Creative tab Localization
 itemGroup.portablecrafting=Portable Crafting
