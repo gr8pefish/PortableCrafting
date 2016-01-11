@@ -12,6 +12,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.oredict.ShapedOreRecipe;
 
 public class ItemRegistry {
 
@@ -38,17 +39,18 @@ public class ItemRegistry {
                 "c",
                 'a', Items.apple, 'w', Blocks.crafting_table, 'c', Blocks.chest);
 
-        GameRegistry.addShapedRecipe(new ItemStack(ItemRegistry.subCrafting, 1, 1),
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemRegistry.subCrafting, 1, 1),
                 "lll",
                 "lbl",
                 "lll",
-                'l', new ItemStack(Items.dye, 1, 4), 'b', Items.book);
+                'l', "gemLapis", 'b', Items.book));
 
-        GameRegistry.addShapedRecipe(new ItemStack(ItemRegistry.portableCrafter, 1),
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemRegistry.portableCrafter, 1),
                 "ibi",
-                "gsg",
+                "iri",
                 "ici",
-                'i', Items.iron_ingot, 'g', Items.gold_ingot, 'b', new ItemStack(ItemRegistry.subCrafting, 1, 0), 'c', new ItemStack(ItemRegistry.subCrafting, 1, 1), 's', Blocks.glass_pane);
+                'i', "logWood", 'b', new ItemStack(ItemRegistry.subCrafting, 1, 0),
+                'c', new ItemStack(ItemRegistry.subCrafting, 1, 1), 'r', "ingotIron"));
 
         //ignore nbt data of portable crafter so it shows in JEI
         INbtIgnoreList ignoreList = JEIPlugin.jeiHelpers.getNbtIgnoreList();

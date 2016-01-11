@@ -1,10 +1,10 @@
 Fix:
-    Recipe not working for portable crafter
 
 Add:
-    JEI Integration: BloodMagic, JEI itself, JEIAddons, TechReborn, JustEnoughResources, TCon
+    Test with server
+    JEI item specific nbt ignore (when it updates)
+    Change color of button hover by altering texture widgets?
     Documentation
-    gradle.properties
     curse key goes:  %USERPROFILE%/.gradle/gradle.properties
 
     Minor:
