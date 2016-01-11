@@ -1,1 +1,15 @@
-Add in right click on spin button to spin other way (have to do fancy things, so maybe)
+Fix:
+    Recipe not working for portable crafter
+
+Add:
+    JEI Integration: BloodMagic, JEI itself, JEIAddons, TechReborn, JustEnoughResources
+    Documentation
+    gradle.properties
+    curse key goes:  %USERPROFILE%/.gradle/gradle.properties
+
+    Minor:
+        Add in right click on spin button to spin other way (have to do fancy things, so maybe)
+
+        Personal:
+            Need to fix authentication error with sourcetree to push
+            espernet not saving nickname
