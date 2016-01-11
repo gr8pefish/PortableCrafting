@@ -51,12 +51,6 @@ public class ItemRegistry {
                 "ici",
                 'i', "logWood", 'b', new ItemStack(ItemRegistry.subCrafting, 1, 0),
                 'c', new ItemStack(ItemRegistry.subCrafting, 1, 1), 'r', "ingotIron"));
-
-        //ignore nbt data of portable crafter so it shows in JEI
-        INbtIgnoreList ignoreList = JEIPlugin.jeiHelpers.getNbtIgnoreList();
-        ignoreList.ignoreNbtTagNames(Reference.NBT.SAVED_INVENTORY_TAG);
-        ignoreList.ignoreNbtTagNames(Reference.NBT.LEAST_SIG_UUID);
-        ignoreList.ignoreNbtTagNames(Reference.NBT.MOST_SIG_UUID);
     }
 
     private static Item registerItem(Item item, String name) {
