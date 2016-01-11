@@ -8,6 +8,8 @@ import java.util.UUID;
 
 public class NBTHelper {
 
+    //NBT Helper methods
+
     public static boolean hasUUID(ItemStack itemStack) {
         return has_tag(itemStack, Reference.NBT.MOST_SIG_UUID) && has_tag(itemStack, Reference.NBT.LEAST_SIG_UUID);
     }

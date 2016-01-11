@@ -2,3 +2,6 @@
 PortableCrafting-1.8.9-1.0
 ------------------------------------------------------
 - Initial Release
+    - Added Portable Crafter
+    - Added Blueprints and Crafting Core
+    - Various tweaks, optimizations, and changes.

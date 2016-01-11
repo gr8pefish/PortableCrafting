@@ -22,7 +22,6 @@ public class ItemPortableCrafter extends ItemBase {
         setHasSubtypes(true);
     }
 
-
     /**
      * If this function returns true (or the item is damageable), the ItemStack's NBT tag will be sent to the client.
      */
@@ -30,7 +29,6 @@ public class ItemPortableCrafter extends ItemBase {
     public boolean getShareTag() {
         return true;
     }
-
 
     /**
      * Called whenever this item is equipped and the right mouse button is pressed. Args: itemStack, world, entityPlayer
@@ -53,13 +51,13 @@ public class ItemPortableCrafter extends ItemBase {
      * Allows items to add custom lines of information to the mouseover description
      *
      * @param itemStack - the itemstack to modify
-     * @param player
-     * @param list
-     * @param par4
+     * @param player - the player
+     * @param list - the information to add
+     * @param advanced - to add advanced info
      */
     @Override
     @SideOnly(Side.CLIENT)
-    public void addInformation(ItemStack itemStack, EntityPlayer player, List list, boolean par4) {
+    public void addInformation(ItemStack itemStack, EntityPlayer player, List list, boolean advanced) {
         EnumChatFormatting hl = EnumChatFormatting.WHITE;
         EnumChatFormatting rst = EnumChatFormatting.GRAY;
         

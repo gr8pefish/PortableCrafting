@@ -48,6 +48,10 @@ public class PortableCrafterContainer extends Container {
     }
 
 
+    /**
+     * Make the player's inventory link to the one that is open
+     * @param inventoryPlayer - the inventory of the player
+     */
     protected void bindPlayerInventory(InventoryPlayer inventoryPlayer) {
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 9; j++) {
@@ -63,19 +67,17 @@ public class PortableCrafterContainer extends Container {
 
     /**
      * Callback for when the crafting matrix is changed.
-     *
-     * @param p_75130_1_
+     * @param inventory - the inventory altered
      */
     @Override
-    public void onCraftMatrixChanged(IInventory p_75130_1_) {
+    public void onCraftMatrixChanged(IInventory inventory) {
         craftingResult.setInventorySlotContents(0, CraftingManager.getInstance().findMatchingRecipe(craftingMatrix, world));
     }
 
 
     /**
      * Called when the container is closed.
-     *
-     * @param player
+     * @param player - the player that closes the container
      */
     @Override
     public void onContainerClosed(EntityPlayer player) {
@@ -90,7 +92,7 @@ public class PortableCrafterContainer extends Container {
     public ItemStack slotClick(int slotIndex, int par2, int par3, EntityPlayer entityPlayer) {
         if (slotIndex >= 0 && slotIndex <= inventoryItemStacks.size()) {
             ItemStack clickedStack = (ItemStack) inventoryItemStacks.get(slotIndex);
-            if (clickedStack != null && clickedStack.getItem() instanceof ItemPortableCrafter && NBTHelper.hasUUID(clickedStack) && NBTHelper.getUUID(clickedStack).equals(NBTHelper.getUUID(craftingMatrix.parent))) {
+            if (clickedStack != null && clickedStack.getItem() instanceof ItemPortableCrafter && NBTHelper.hasUUID(clickedStack) && NBTHelper.hasUUID(craftingMatrix.parent) && NBTHelper.getUUID(clickedStack).equals(NBTHelper.getUUID(craftingMatrix.parent))) {
                 return null;
             }
         }
@@ -100,9 +102,8 @@ public class PortableCrafterContainer extends Container {
 
     /**
      * Called when a player shift-clicks on a slot. You must override this or you will crash when someone does that.
-     *
-     * @param entityPlayer
-     * @param slotIndex
+     * @param entityPlayer - the player shift clicking
+     * @param slotIndex - the slot to check
      */
     @Override
     public ItemStack transferStackInSlot(EntityPlayer entityPlayer, int slotIndex) {
@@ -168,6 +169,7 @@ public class PortableCrafterContainer extends Container {
         return true;
     }
 
+    //Functions to alter the matrix via button or hotkey presses
 
     public void balanceMatrix() {
         boolean[] balancedSlots = new boolean[9];
@@ -243,6 +245,7 @@ public class PortableCrafterContainer extends Container {
         }
     }
 
+    //Inventory Tweaks (need it to be updated to implement)
 //    @ContainerSectionCallback
 //    @SideOnly(Side.CLIENT)
 //    public Map<ContainerSection, List<Slot>> getContainerSections() {

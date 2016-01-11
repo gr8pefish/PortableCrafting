@@ -21,9 +21,8 @@ public class JEIPlugin implements IModPlugin {
 
     @Override
     public void register(IModRegistry registry) {
-        IGuiHelper guiHelper = jeiHelpers.getGuiHelper();
 
-        //add shiftclicking
+        //add Shift-clicking from [+] into grid
         registry.getRecipeTransferRegistry().addRecipeTransferHandler(PortableCrafterContainer.class, VanillaRecipeCategoryUid.CRAFTING, 1, 9, 10, 36);
 
         //ignore nbt data of portable crafter so it shows in JEI

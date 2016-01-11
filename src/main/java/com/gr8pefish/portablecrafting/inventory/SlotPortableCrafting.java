@@ -16,14 +16,13 @@ public class SlotPortableCrafting extends Slot {
     }
 
     /**
-     * if par2 has more items than par1, onCrafting(item,countIncrease) is called
-     *
-     * @param p_75220_1_
-     * @param p_75220_2_
+     * If stack1 has more items than stack2, onCrafting(item,countIncrease) is called
+     * @param stack1 - initial stack
+     * @param stack2 - second stack
      */
     @Override
-    public void onSlotChange(ItemStack p_75220_1_, ItemStack p_75220_2_) {
-        super.onSlotChange(p_75220_1_, p_75220_2_);
+    public void onSlotChange(ItemStack stack1, ItemStack stack2) {
+        super.onSlotChange(stack1, stack2);
         craftingMatrix.onGuiSaved(player);
     }
 }

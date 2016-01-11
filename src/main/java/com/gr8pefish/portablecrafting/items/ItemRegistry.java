@@ -19,11 +19,17 @@ public class ItemRegistry {
     public static ItemPortableCrafter portableCrafter;
     public static ItemSubCrafting subCrafting;
 
+    /**
+     * Register Items
+     */
     public static void registerItems() {
         portableCrafter = (ItemPortableCrafter)registerItem(new ItemPortableCrafter());
         subCrafting = (ItemSubCrafting)registerItem(new ItemSubCrafting());
     }
 
+    /**
+     * Register item rendering
+     */
     public static void registerRenders() {
         InventoryRenderHelper helper = PortableCrafting.proxy.getRenderHelper();
 
@@ -32,6 +38,9 @@ public class ItemRegistry {
         helper.itemRender(subCrafting, 1);
     }
 
+    /**
+     * Register recipes
+     */
     public static void initRecipes() {
         GameRegistry.addShapedRecipe(new ItemStack(ItemRegistry.subCrafting, 1, 0),
                 "a",
@@ -52,6 +61,8 @@ public class ItemRegistry {
                 'i', "logWood", 'b', new ItemStack(ItemRegistry.subCrafting, 1, 0),
                 'c', new ItemStack(ItemRegistry.subCrafting, 1, 1), 'r', "ingotIron"));
     }
+
+    //Helper methods for registration
 
     private static Item registerItem(Item item, String name) {
         GameRegistry.registerItem(item, name);

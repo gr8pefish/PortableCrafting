@@ -34,9 +34,9 @@ public class PortableCrafterButton extends GuiButton {
     /**
      * Draws this button to the screen.
      *
-     * @param minecraft
-     * @param mPosX
-     * @param mPosY
+     * @param minecraft - the minecraft to draw it to
+     * @param mPosX - the x position of the mouse
+     * @param mPosY - the y position of the mouse
      */
     @Override
     public void drawButton(Minecraft minecraft, int mPosX, int mPosY) {

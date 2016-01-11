@@ -1,3 +1,4 @@
 Fix:
 
 Add:
+    Fancy rendering of items in the crafting grid on the item?

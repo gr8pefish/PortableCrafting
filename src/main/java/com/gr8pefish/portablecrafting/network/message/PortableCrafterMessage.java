@@ -18,7 +18,7 @@ public class PortableCrafterMessage implements IMessage {
     public static final int SPIN_MATRIX = 2;
     public static final int BALANCE_MATRIX = 3;
     public static final int SPIN_MATRIX_LEFT = 4;
-    public static final int OPEN_IBENCH = 5;
+    public static final int OPEN_CRAFTER = 5;
 
     // MUST ALWAYS HAVE DEFAULT CONSTUCTOR OR WE WILL CRASH, IDIOT!
     public PortableCrafterMessage() { }
@@ -29,8 +29,7 @@ public class PortableCrafterMessage implements IMessage {
 
     /**
      * Convert from the supplied buffer into your specific message type
-     *
-     * @param buf
+     * @param buf - the input
      */
     @Override
     public void fromBytes(ByteBuf buf) {
@@ -39,8 +38,7 @@ public class PortableCrafterMessage implements IMessage {
 
     /**
      * Deconstruct your message into the supplied byte buffer
-     *
-     * @param buf
+     * @param buf - the output
      */
     @Override
     public void toBytes(ByteBuf buf) {
@@ -52,10 +50,9 @@ public class PortableCrafterMessage implements IMessage {
         /**
          * Called when a message is received of the appropriate type. You can optionally return a reply message, or null if no reply
          * is needed.
-         *
          * @param message The message
-         * @param ctx
-         * @return an optional return message
+         * @param ctx - the context
+         * @return - an optional return message (null means no reply)
          */
         @Override
         public IMessage onMessage(PortableCrafterMessage message, MessageContext ctx) {
@@ -77,7 +74,7 @@ public class PortableCrafterMessage implements IMessage {
                     container = (PortableCrafterContainer)ctx.getServerHandler().playerEntity.openContainer;
                     container.clearMatrix();
                     break;
-                case PortableCrafterMessage.OPEN_IBENCH:
+                case PortableCrafterMessage.OPEN_CRAFTER:
                     EntityPlayer player = ctx.getServerHandler().playerEntity;
                     player.openGui(PortableCrafting.instance, Reference.GUI_ENUM.PORTABLE_CRAFTER.ordinal(), player.worldObj, (int)player.posX, (int)player.posY, (int)player.posZ);
                     break;

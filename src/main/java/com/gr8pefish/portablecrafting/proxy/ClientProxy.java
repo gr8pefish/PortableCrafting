@@ -8,7 +8,6 @@ import com.gr8pefish.portablecrafting.util.InventoryRenderHelper;
 public class ClientProxy extends CommonProxy {
 
     public static KeyInputEventHandler keyInputEventHandler;
-
     private InventoryRenderHelper renderHelper;
 
     @Override
@@ -20,11 +19,12 @@ public class ClientProxy extends CommonProxy {
     public void preInit() {
         super.preInit();
 
+        //keybindings
         keyInputEventHandler = new KeyInputEventHandler();
         keyInputEventHandler.init();
 
+        //rendering items
         renderHelper = new InventoryRenderHelper(Reference.MOD.DOMAIN);
-
         ItemRegistry.registerRenders();
     }
 

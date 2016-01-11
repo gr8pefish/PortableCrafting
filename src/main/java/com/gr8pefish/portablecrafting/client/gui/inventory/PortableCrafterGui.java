@@ -19,7 +19,6 @@ import java.io.IOException;
 public class PortableCrafterGui extends GuiContainer {
 
     private PortableCrafterContainer container;
-    private EntityPlayer player;
 
     private PortableCrafterButton balanceButton;
     private PortableCrafterButton spinButton;
@@ -27,7 +26,6 @@ public class PortableCrafterGui extends GuiContainer {
 
     public PortableCrafterGui(PortableCrafterContainer container) {
         super(container);
-        this.player = container.getPlayer();
         this.container = container;
         xSize = 201;
         ySize = 166;
@@ -48,8 +46,8 @@ public class PortableCrafterGui extends GuiContainer {
 
     @Override
     protected void drawGuiContainerForegroundLayer(int x, int y) {
-        fontRendererObj.drawString(StatCollector.translateToLocal("crafting.portablecrafting"), 41, 6, 4210752);
-        fontRendererObj.drawString(StatCollector.translateToLocal("container.inventory"), 20, 73, 4210752);
+        fontRendererObj.drawString(StatCollector.translateToLocal("crafting.portablecrafting"), 41, 6, 4210752); //"Portable Crafter" at the top
+        fontRendererObj.drawString(StatCollector.translateToLocal("container.inventory"), 20, 73, 4210752); //"Inventory" above your inventory
     }
 
     @Override
@@ -66,32 +64,36 @@ public class PortableCrafterGui extends GuiContainer {
     /**
      * Fired when a key is typed. This is the equivalent of KeyListener.keyTyped(KeyEvent e).
      *
-     * @param p_73869_1_
-     * @param p_73869_2_
+     * @param key - the key pressed
+     * @param keyCode - the code of the key pressed
      */
     @Override
-    protected void keyTyped(char p_73869_1_, int p_73869_2_) throws IOException {
-        if (p_73869_2_ == this.mc.gameSettings.keyBindBack.getKeyCode()) {
+    protected void keyTyped(char key, int keyCode) throws IOException {
+        if (keyCode == this.mc.gameSettings.keyBindBack.getKeyCode()) {
             this.container.clearMatrix();
             PacketHandler.network.sendToServer(new PortableCrafterMessage(PortableCrafterMessage.CLEAR_MATRIX));
         }
-        if (p_73869_2_ == this.mc.gameSettings.keyBindRight.getKeyCode()) {
+        if (keyCode == this.mc.gameSettings.keyBindRight.getKeyCode()) {
             this.container.spinMatrix();
             PacketHandler.network.sendToServer(new PortableCrafterMessage(PortableCrafterMessage.SPIN_MATRIX));
         }
-        if (p_73869_2_ == this.mc.gameSettings.keyBindLeft.getKeyCode()) {
+        if (keyCode == this.mc.gameSettings.keyBindLeft.getKeyCode()) {
             this.container.spinMatrix(true);
             PacketHandler.network.sendToServer(new PortableCrafterMessage(PortableCrafterMessage.SPIN_MATRIX_LEFT));
         }
 
-        if (p_73869_2_ == this.mc.gameSettings.keyBindForward.getKeyCode()) {
+        if (keyCode == this.mc.gameSettings.keyBindForward.getKeyCode()) {
             this.container.balanceMatrix();
             PacketHandler.network.sendToServer(new PortableCrafterMessage(PortableCrafterMessage.BALANCE_MATRIX));
         }
 
-        super.keyTyped(p_73869_1_, p_73869_2_);
+        super.keyTyped(key, keyCode);
     }
 
+    /**
+     * When a button is pressed in the GUI this method is called
+     * @param button - the button activated
+     */
     @Override
     protected void actionPerformed(GuiButton button) {
         if (button == balanceButton) {

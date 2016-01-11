@@ -34,7 +34,7 @@ public class KeyInputEventHandler {
 
             if (PortableCraftingHelper.getPortableCrafter(player) != null) {
                 player.openGui(PortableCrafting.instance, Reference.GUI_ENUM.PORTABLE_CRAFTER.ordinal(), player.getEntityWorld(), (int)player.posX, (int)player.posY, (int)player.posZ);
-                PacketHandler.network.sendToServer(new PortableCrafterMessage(PortableCrafterMessage.OPEN_IBENCH));
+                PacketHandler.network.sendToServer(new PortableCrafterMessage(PortableCrafterMessage.OPEN_CRAFTER));
             }
         }
     }

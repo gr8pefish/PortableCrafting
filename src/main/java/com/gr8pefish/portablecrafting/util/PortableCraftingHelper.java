@@ -6,6 +6,8 @@ import net.minecraft.item.ItemStack;
 
 public class PortableCraftingHelper {
 
+    //Various helper methods specific to this mod
+
     public static boolean playerHasPortableCrafter(EntityPlayer player) {
         for (int i = 0; i < player.inventory.getSizeInventory(); i++) {
             if (player.inventory.getStackInSlot(i).getItem() instanceof ItemPortableCrafter) {
@@ -30,7 +32,6 @@ public class PortableCraftingHelper {
             }
         }
 
-
         if (!player.worldObj.isRemote && crafter != null) {
             NBTHelper.setUUID(crafter);
         }
@@ -38,8 +39,7 @@ public class PortableCraftingHelper {
         return crafter;
     }
 
-    //Stacks
-
+    //Stack Helper Methods
 
     public static boolean stacksMatch(ItemStack stack1, ItemStack stack2) {
         if (stack1 == null && stack2 == null)

@@ -18,10 +18,7 @@ public class InventoryPortableCrafting extends InventoryCrafting {
     public EntityPlayer player;
 
     protected ItemStack[] inventory;
-
     private Container eventHandler;
-
-    protected ItemStack[] recipes;
 
     // This class gets instantiated when we right click a clipboard. Called from the GuiHandler
     public InventoryPortableCrafting(EntityPlayer player, ItemStack itemStack) {
@@ -41,9 +38,8 @@ public class InventoryPortableCrafting extends InventoryCrafting {
 
     /**
      * Sets the given item stack to the specified slot in the inventory (can be crafting or armor sections).
-     *
-     * @param slotIndex
-     * @param itemStack
+     * @param slotIndex - the slot to check
+     * @param itemStack - the itemstack to check
      */
     @Override
     public void setInventorySlotContents(int slotIndex, ItemStack itemStack) {
@@ -56,9 +52,8 @@ public class InventoryPortableCrafting extends InventoryCrafting {
 
     /**
      * Returns the itemstack in the slot specified (Top left is 0, 0). Args: row, column
-     *
-     * @param row
-     * @param col
+     * @param row - the row
+     * @param col - the column
      */
     @Override
     public ItemStack getStackInRowAndColumn(int row, int col) {
@@ -72,8 +67,7 @@ public class InventoryPortableCrafting extends InventoryCrafting {
 
     /**
      * Returns the stack in slot i
-     *
-     * @param slotIndex
+     * @param slotIndex - the slot to check
      */
     @Override
     public ItemStack getStackInSlot(int slotIndex) {
@@ -91,9 +85,8 @@ public class InventoryPortableCrafting extends InventoryCrafting {
     /**
      * Removes from an inventory slot (first arg) up to a specified number (second arg) of items and returns them in a
      * new stack.
-     *
-     * @param slotIndex
-     * @param amount
+     * @param slotIndex - the slot to take from
+     * @param amount - the amount to decrement
      */
     @Override
     public ItemStack decrStackSize(int slotIndex, int amount) {
@@ -142,19 +135,20 @@ public class InventoryPortableCrafting extends InventoryCrafting {
      */
     @Override
     public void markDirty() {
-        //
+        //nothing
     }
 
     @Override
     public void openInventory(EntityPlayer player) {
-        //
+        //nothing
     }
 
     @Override
     public void closeInventory(EntityPlayer player) {
-        //
+        //nothing
     }
 
+    //Methods to make sure the stack is unique
 
     public void onGuiSaved(EntityPlayer entityPlayer) {
         if (parent != null)
@@ -198,6 +192,8 @@ public class InventoryPortableCrafting extends InventoryCrafting {
             }
         }
     }
+
+    //Methods to save the data (the inventory, or the items in the crafting grid)
 
     public void save() {
         NBTTagCompound nbtTagCompound = parent.getTagCompound();
