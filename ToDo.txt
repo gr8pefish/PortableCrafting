@@ -2,7 +2,7 @@ Fix:
     Recipe not working for portable crafter
 
 Add:
-    JEI Integration: BloodMagic, JEI itself, JEIAddons, TechReborn, JustEnoughResources
+    JEI Integration: BloodMagic, JEI itself, JEIAddons, TechReborn, JustEnoughResources, TCon
     Documentation
     gradle.properties
     curse key goes:  %USERPROFILE%/.gradle/gradle.properties

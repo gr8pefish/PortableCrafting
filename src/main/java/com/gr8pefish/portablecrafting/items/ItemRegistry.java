@@ -20,7 +20,6 @@ public class ItemRegistry {
         subCrafting = (ItemSubCrafting)registerItem(new ItemSubCrafting());
     }
 
-
     public static void registerRenders() {
         InventoryRenderHelper helper = PortableCrafting.proxy.getRenderHelper();
 
@@ -30,7 +29,6 @@ public class ItemRegistry {
     }
 
     public static void initRecipes() {
-
         GameRegistry.addShapedRecipe(new ItemStack(ItemRegistry.subCrafting, 1, 0),
                 "a",
                 "w",

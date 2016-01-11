@@ -13,7 +13,6 @@ buildscript {
 plugins {
     id "net.minecraftforge.gradle.forge" version "2.0.2"
     id 'com.matthewprenger.cursegradle' version '1.0.5'
-    id 'net.franz-becker.gradle-lombok' version '1.5'
 }
 
 group = package_group
@@ -39,6 +38,8 @@ dependencies {
 minecraft {
     version = "${mc_version}-${forge_version}"
     runDir = "run"
+
+    useDepAts = true
 
     replace "@VERSION@", project.version
     replaceIn "Reference.java"
@@ -115,18 +116,17 @@ def curseRelations = {
     optionalLibrary 'just-enough-items-jei'
 }
 
-curseforge {
-    if (project.hasProperty('curse_key_portableCrafting'))
-        apiKey = project.curse_key_portableCrafting
-
-    project {
-        id = "${curse_id}"
-        changelog = getChangelogText()
-        releaseType = 'beta'
-
-        addGameVersion '1.8.8'
-        addGameVersion '1.8.9'
-
-        relations curseRelations
-    }
-}
+//curseforge {
+//    if (project.hasProperty('curse_key_portableCrafting'))
+//        apiKey = project.curse_key_portableCrafting
+//
+//    project {
+//        id = "${curse_id}"
+//        changelog = getChangelogText()
+//        releaseType = 'beta'
+//
+//        addGameVersion '1.8.9'
+//
+//        relations curseRelations
+//    }
+//}

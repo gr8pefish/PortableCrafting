@@ -16,7 +16,6 @@ import net.minecraft.world.World;
 import java.util.ArrayList;
 
 //@InventoryContainer
-//@Optional.Interface(iface = "codechicken.nei.invtweaks.INEIGuiHandler", modid = "NotEnoughItems")
 public class PortableCrafterContainer extends Container {
 
     private final EntityPlayer player;
@@ -24,7 +23,6 @@ public class PortableCrafterContainer extends Container {
 
     public InventoryPortableCrafting craftingMatrix;
     public InventoryCraftResult craftingResult;
-    public InventoryTrash inventoryTrash;
 
     public PortableCrafterContainer(EntityPlayer player, InventoryPortableCrafting PortableCraftingInventory) {
         this.player = player;
@@ -33,8 +31,6 @@ public class PortableCrafterContainer extends Container {
         this.craftingMatrix = PortableCraftingInventory;
         this.craftingMatrix.setEventHandler(this);
         this.craftingResult = new InventoryCraftResult();
-
-        this.inventoryTrash = new InventoryTrash();
 
         // PortableCrafting output slot
         this.addSlotToContainer(new SlotPortableCraftingResult(player, craftingMatrix, craftingResult, 0, 136, 35));
@@ -47,8 +43,6 @@ public class PortableCrafterContainer extends Container {
         }
 
         bindPlayerInventory(player.inventory);
-
-        this.addSlotToContainer(new SlotTrash(inventoryTrash, 0, 179 + 12, 58));
 
         this.onCraftMatrixChanged(craftingMatrix);
     }
