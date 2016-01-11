@@ -2,7 +2,7 @@ package com.gr8pefish.portablecrafting.inventory;
 
 import com.gr8pefish.portablecrafting.items.craftingBenches.ItemPortableCrafter;
 import com.gr8pefish.portablecrafting.util.NBTHelper;
-import com.gr8pefish.portablecrafting.util.StackHelper;
+import com.gr8pefish.portablecrafting.util.PortableCraftingHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
@@ -194,7 +194,7 @@ public class PortableCrafterContainer extends Container {
                     // Now we find how many stacks are stackable with the current one
                     ItemStack tStack = craftingMatrix.getStackInSlot(j);
 
-                    if (tStack != null && StackHelper.stacksMatch(currentStack, tStack)) {
+                    if (tStack != null && PortableCraftingHelper.stacksMatch(currentStack, tStack)) {
                         matchingSlotIndexes.add(j);
                         matchingStacks++;
                         totalItems += tStack.stackSize;

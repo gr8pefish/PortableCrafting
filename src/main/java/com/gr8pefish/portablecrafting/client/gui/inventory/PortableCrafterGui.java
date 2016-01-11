@@ -4,7 +4,7 @@ import com.gr8pefish.portablecrafting.client.gui.button.PortableCrafterButton;
 import com.gr8pefish.portablecrafting.inventory.PortableCrafterContainer;
 import com.gr8pefish.portablecrafting.network.PacketHandler;
 import com.gr8pefish.portablecrafting.network.message.PortableCrafterMessage;
-import com.gr8pefish.portablecrafting.reference.Textures;
+import com.gr8pefish.portablecrafting.reference.Reference;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.EntityPlayer;
@@ -55,7 +55,7 @@ public class PortableCrafterGui extends GuiContainer {
     protected void drawGuiContainerBackgroundLayer(float opacity, int x, int y) {
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 
-        this.mc.getTextureManager().bindTexture(Textures.Gui.PORTABLE_CRAFTER);
+        this.mc.getTextureManager().bindTexture(Reference.GUI_TEXTURE.PORTABLE_CRAFTER);
 
         int xStart = (width - xSize) / 2;
         int yStart = (height - ySize) / 2;

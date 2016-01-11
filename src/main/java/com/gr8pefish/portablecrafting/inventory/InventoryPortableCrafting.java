@@ -1,7 +1,7 @@
 package com.gr8pefish.portablecrafting.inventory;
 
 import com.gr8pefish.portablecrafting.items.craftingBenches.ItemPortableCrafter;
-import com.gr8pefish.portablecrafting.reference.Misc;
+import com.gr8pefish.portablecrafting.reference.Reference;
 import com.gr8pefish.portablecrafting.util.NBTHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
@@ -13,7 +13,6 @@ import net.minecraft.nbt.NBTTagList;
 import java.util.UUID;
 
 public class InventoryPortableCrafting extends InventoryCrafting {
-
 
     public ItemStack parent;
     public EntityPlayer player;
@@ -121,18 +120,6 @@ public class InventoryPortableCrafting extends InventoryCrafting {
         }
     }
 
-
-    /**
-     * When some containers are closed they call this on each slot, then drop whatever it returns as an EntityItem -
-     * like when you close a workbench GUI.
-     *
-     * @param p_70304_1_
-     */
-//    @Override
-//    public ItemStack getStackInSlotOnClosing(int p_70304_1_) {
-//        return null;
-//    }
-
     /**
      * Returns the name of the inventory
      */
@@ -140,7 +127,6 @@ public class InventoryPortableCrafting extends InventoryCrafting {
     public String getName() {
         return "crafting.inventory";
     }
-
 
     /**
      * Returns the maximum stack size for a inventory slot.
@@ -177,19 +163,18 @@ public class InventoryPortableCrafting extends InventoryCrafting {
 
     public ItemStack findParentItemStack(EntityPlayer entityPlayer) {
         if (NBTHelper.hasUUID(parent)) {
-            UUID parentUUID = new UUID(parent.getTagCompound().getLong(Misc.NBT.MOST_SIG_UUID), parent.getTagCompound().getLong(Misc.NBT.LEAST_SIG_UUID));
+            UUID parentUUID = new UUID(parent.getTagCompound().getLong(Reference.NBT.MOST_SIG_UUID), parent.getTagCompound().getLong(Reference.NBT.LEAST_SIG_UUID));
             for (int i = 0; i < entityPlayer.inventory.getSizeInventory(); i++) {
                 ItemStack itemStack = entityPlayer.inventory.getStackInSlot(i);
 
                 if (itemStack != null && itemStack.getItem() instanceof ItemPortableCrafter && NBTHelper.hasUUID(itemStack)) {
-                    if (itemStack.getTagCompound().getLong(Misc.NBT.MOST_SIG_UUID) == parentUUID.getMostSignificantBits() &&
-                            itemStack.getTagCompound().getLong(Misc.NBT.LEAST_SIG_UUID) == parentUUID.getLeastSignificantBits()) {
+                    if (itemStack.getTagCompound().getLong(Reference.NBT.MOST_SIG_UUID) == parentUUID.getMostSignificantBits() &&
+                            itemStack.getTagCompound().getLong(Reference.NBT.LEAST_SIG_UUID) == parentUUID.getLeastSignificantBits()) {
                         return itemStack;
                     }
                 }
             }
         }
-
         return null;
     }
 
@@ -197,8 +182,6 @@ public class InventoryPortableCrafting extends InventoryCrafting {
         parent = findParentItemStack(player);
 
         if (parent != null) {
-
-
             nbtTagCompound = parent.getTagCompound();
 
             if (nbtTagCompound != null && nbtTagCompound.hasKey("Items")) {

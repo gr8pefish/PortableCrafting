@@ -3,7 +3,7 @@ package com.gr8pefish.portablecrafting.handlers;
 import com.gr8pefish.portablecrafting.client.gui.inventory.PortableCrafterGui;
 import com.gr8pefish.portablecrafting.inventory.InventoryPortableCrafting;
 import com.gr8pefish.portablecrafting.inventory.PortableCrafterContainer;
-import com.gr8pefish.portablecrafting.reference.Misc;
+import com.gr8pefish.portablecrafting.reference.Reference;
 import com.gr8pefish.portablecrafting.util.PortableCraftingHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
@@ -23,7 +23,7 @@ public class GuiHandler implements IGuiHandler {
      */
     @Override
     public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
-        if (ID == Misc.GUIs.PORTABLE_CRAFTER.ordinal()) {
+        if (ID == Reference.GUI_ENUM.PORTABLE_CRAFTER.ordinal()) {
             return new PortableCrafterContainer(player, new InventoryPortableCrafting(player, PortableCraftingHelper.getPortableCrafter(player)));
         }
         return null;
@@ -44,7 +44,7 @@ public class GuiHandler implements IGuiHandler {
      */
     @Override
     public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
-        if (ID == Misc.GUIs.PORTABLE_CRAFTER.ordinal()) {
+        if (ID == Reference.GUI_ENUM.PORTABLE_CRAFTER.ordinal()) {
             return new PortableCrafterGui(new PortableCrafterContainer(player, new InventoryPortableCrafting(player, PortableCraftingHelper.getPortableCrafter(player))));
         }
         return null;

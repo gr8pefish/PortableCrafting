@@ -1,11 +1,9 @@
 package com.gr8pefish.portablecrafting.items.craftingItems;
 
 import com.gr8pefish.portablecrafting.items.ItemBase;
-import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 

@@ -49,26 +49,13 @@ public class InventoryTrash implements IInventory{
     }
 
     /**
-     * When some containers are closed they call this on each slot, then drop whatever it returns as an EntityItem -
-     * like when you close a workbench GUI.
-     *
-     * @param p_70304_1_
-     */
-//    @Override
-//    public ItemStack getStackInSlotOnClosing(int p_70304_1_) {
-//        return null;
-//    }
-
-    /**
      * Sets the given item stack to the specified slot in the inventory (can be crafting or armor sections).
      *
      * @param p_70299_1_
      * @param p_70299_2_
      */
     @Override
-    public void setInventorySlotContents(int p_70299_1_, ItemStack p_70299_2_) {
-
-    }
+    public void setInventorySlotContents(int p_70299_1_, ItemStack p_70299_2_) {}
 
     /**
      * Returns the name of the inventory
@@ -102,9 +89,7 @@ public class InventoryTrash implements IInventory{
      * hasn't changed and skip it.
      */
     @Override
-    public void markDirty() {
-
-    }
+    public void markDirty() {}
 
     /**
      * Do not make give this method the name canInteractWith because it clashes with Container
@@ -117,14 +102,10 @@ public class InventoryTrash implements IInventory{
     }
 
     @Override
-    public void openInventory(EntityPlayer player) {
-
-    }
+    public void openInventory(EntityPlayer player) {}
 
     @Override
-    public void closeInventory(EntityPlayer player) {
-
-    }
+    public void closeInventory(EntityPlayer player) {}
 
     /**
      * Returns true if automation is allowed to insert the given stack (ignoring stack size) into the given slot.
@@ -143,9 +124,7 @@ public class InventoryTrash implements IInventory{
     }
 
     @Override
-    public void setField(int id, int value) {
-
-    }
+    public void setField(int id, int value) {}
 
     @Override
     public int getFieldCount() {
@@ -153,7 +132,5 @@ public class InventoryTrash implements IInventory{
     }
 
     @Override
-    public void clear() {
-
-    }
+    public void clear() {}
 }

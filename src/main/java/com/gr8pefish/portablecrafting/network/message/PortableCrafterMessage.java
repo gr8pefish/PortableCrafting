@@ -2,7 +2,7 @@ package com.gr8pefish.portablecrafting.network.message;
 
 import com.gr8pefish.portablecrafting.PortableCrafting;
 import com.gr8pefish.portablecrafting.inventory.PortableCrafterContainer;
-import com.gr8pefish.portablecrafting.reference.Misc;
+import com.gr8pefish.portablecrafting.reference.Reference;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
@@ -79,7 +79,7 @@ public class PortableCrafterMessage implements IMessage {
                     break;
                 case PortableCrafterMessage.OPEN_IBENCH:
                     EntityPlayer player = ctx.getServerHandler().playerEntity;
-                    player.openGui(PortableCrafting.instance, Misc.GUIs.PORTABLE_CRAFTER.ordinal(), player.worldObj, (int)player.posX, (int)player.posY, (int)player.posZ);
+                    player.openGui(PortableCrafting.instance, Reference.GUI_ENUM.PORTABLE_CRAFTER.ordinal(), player.worldObj, (int)player.posX, (int)player.posY, (int)player.posZ);
                     break;
             }
 

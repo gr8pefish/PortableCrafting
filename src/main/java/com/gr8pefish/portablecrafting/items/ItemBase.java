@@ -9,7 +9,7 @@ public class ItemBase extends Item {
     public ItemBase(String unlocName){
         super();
         setCreativeTab(PortableCrafting.creativeTab);
-        setUnlocalizedName(Reference.MODID +":" + unlocName);
+        setUnlocalizedName(Reference.MOD.MODID +":" + unlocName);
     }
 
 }

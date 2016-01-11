@@ -13,7 +13,7 @@ public class PacketHandler {
 
     //initializes the wrapper and then the messages
     public static void init() {
-        network = NetworkRegistry.INSTANCE.newSimpleChannel(Reference.MODID.toUpperCase());
+        network = NetworkRegistry.INSTANCE.newSimpleChannel(Reference.MOD.MODID.toUpperCase());
         registerMessage(PortableCrafterMessage.Handler.class, PortableCrafterMessage.class, Side.SERVER);
     }
 

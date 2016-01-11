@@ -1,6 +1,6 @@
 package com.gr8pefish.portablecrafting.util;
 
-import com.gr8pefish.portablecrafting.reference.Misc;
+import com.gr8pefish.portablecrafting.reference.Reference;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
@@ -9,7 +9,7 @@ import java.util.UUID;
 public class NBTHelper {
 
     public static boolean hasUUID(ItemStack itemStack) {
-        return has_tag(itemStack, Misc.NBT.MOST_SIG_UUID) && has_tag(itemStack, Misc.NBT.LEAST_SIG_UUID);
+        return has_tag(itemStack, Reference.NBT.MOST_SIG_UUID) && has_tag(itemStack, Reference.NBT.LEAST_SIG_UUID);
     }
 
     public static void setUUID(ItemStack itemStack) {
@@ -18,8 +18,8 @@ public class NBTHelper {
         if (!hasUUID(itemStack)) {
             UUID itemUUID = UUID.randomUUID();
 
-            setLong(itemStack, Misc.NBT.MOST_SIG_UUID, itemUUID.getMostSignificantBits());
-            setLong(itemStack, Misc.NBT.LEAST_SIG_UUID, itemUUID.getLeastSignificantBits());
+            setLong(itemStack, Reference.NBT.MOST_SIG_UUID, itemUUID.getMostSignificantBits());
+            setLong(itemStack, Reference.NBT.LEAST_SIG_UUID, itemUUID.getLeastSignificantBits());
         }
     }
 
@@ -27,8 +27,8 @@ public class NBTHelper {
         initNBTCompound(itemStack);
 
         if (hasUUID(itemStack)) {
-            return new UUID(itemStack.getTagCompound().getLong(Misc.NBT.MOST_SIG_UUID),
-                    itemStack.getTagCompound().getLong(Misc.NBT.LEAST_SIG_UUID));
+            return new UUID(itemStack.getTagCompound().getLong(Reference.NBT.MOST_SIG_UUID),
+                    itemStack.getTagCompound().getLong(Reference.NBT.LEAST_SIG_UUID));
         }
         return null;
     }

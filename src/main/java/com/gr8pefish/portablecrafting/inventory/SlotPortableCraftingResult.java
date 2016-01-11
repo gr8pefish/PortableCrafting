@@ -18,10 +18,6 @@ public class SlotPortableCraftingResult extends SlotCrafting {
 
     @Override
     public void onPickupFromSlot(EntityPlayer entityPlayer, ItemStack crafted) {
-//        System.out.println("Save recipe for" + crafted);
-//        for (int i=0; i < craftingMatrix.inventory.length; i++)
-//            System.out.println(craftingMatrix.inventory[i]);
-
         super.onPickupFromSlot(entityPlayer, crafted);
     }
 

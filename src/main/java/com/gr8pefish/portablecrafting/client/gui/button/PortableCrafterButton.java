@@ -1,6 +1,6 @@
 package com.gr8pefish.portablecrafting.client.gui.button;
 
-import com.gr8pefish.portablecrafting.reference.Textures;
+import com.gr8pefish.portablecrafting.reference.Reference;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.util.ResourceLocation;
@@ -11,7 +11,7 @@ public class PortableCrafterButton extends GuiButton {
     public static final int BALANCE = 1;
     public static final int EMPTY = 2;
 
-    public static final ResourceLocation widgetTextures = Textures.Gui.WIDGETS;
+    public static final ResourceLocation widgetTextures = Reference.GUI_TEXTURE.WIDGETS;
 
     private int iconOffsetX = 0;
     private int iconOffsetY = 0;

@@ -15,9 +15,6 @@ public class SlotPortableCrafting extends Slot {
         this.player = player;
     }
 
-
-
-
     /**
      * if par2 has more items than par1, onCrafting(item,countIncrease) is called
      *
