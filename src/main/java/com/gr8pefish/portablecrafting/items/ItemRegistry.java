@@ -3,7 +3,10 @@ package com.gr8pefish.portablecrafting.items;
 import com.gr8pefish.portablecrafting.PortableCrafting;
 import com.gr8pefish.portablecrafting.items.craftingBenches.ItemPortableCrafter;
 import com.gr8pefish.portablecrafting.items.craftingItems.ItemSubCrafting;
+import com.gr8pefish.portablecrafting.plugins.jei.JEIPlugin;
+import com.gr8pefish.portablecrafting.reference.Reference;
 import com.gr8pefish.portablecrafting.util.InventoryRenderHelper;
+import mezz.jei.api.INbtIgnoreList;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -47,6 +50,11 @@ public class ItemRegistry {
                 "ici",
                 'i', Items.iron_ingot, 'g', Items.gold_ingot, 'b', new ItemStack(ItemRegistry.subCrafting, 1, 0), 'c', new ItemStack(ItemRegistry.subCrafting, 1, 1), 's', Blocks.glass_pane);
 
+        //ignore nbt data of portable crafter so it shows in JEI
+        INbtIgnoreList ignoreList = JEIPlugin.jeiHelpers.getNbtIgnoreList();
+        ignoreList.ignoreNbtTagNames(Reference.NBT.SAVED_INVENTORY_TAG);
+        ignoreList.ignoreNbtTagNames(Reference.NBT.LEAST_SIG_UUID);
+        ignoreList.ignoreNbtTagNames(Reference.NBT.MOST_SIG_UUID);
     }
 
     private static Item registerItem(Item item, String name) {

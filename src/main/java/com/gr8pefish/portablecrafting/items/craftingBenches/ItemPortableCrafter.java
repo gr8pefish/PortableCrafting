@@ -35,9 +35,9 @@ public class ItemPortableCrafter extends ItemBase {
     /**
      * Called whenever this item is equipped and the right mouse button is pressed. Args: itemStack, world, entityPlayer
      *
-     * @param itemStack
-     * @param world
-     * @param player
+     * @param itemStack - the stack clicked
+     * @param world - the world of the event
+     * @param player - the player doign the clicking
      */
     @Override
     public ItemStack onItemRightClick(ItemStack itemStack, World world, EntityPlayer player) {
@@ -49,34 +49,10 @@ public class ItemPortableCrafter extends ItemBase {
         return itemStack;
     }
 
-//    /**
-//     * 1.8 Specific model rendering for items with different damage values
-//     */
-//    @SideOnly(Side.CLIENT)
-//    public void initModel() {
-//        final ModelResourceLocation basicModel = new ModelResourceLocation(getRegistryName(), "inventory"); //"inventory" is used to indicate the model as it should render in the inventory itself
-//        final ModelResourceLocation plusModel = new ModelResourceLocation(getRegistryName() + "_plus", "inventory");
-//        System.out.println("REGNAME: "+getRegistryName());
-//        portablecrafting.logger.info("REGNAME: "+getRegistryName());
-//
-//        ModelBakery.registerItemVariants(this, basicModel, plusModel);
-//
-//        ModelLoader.setCustomMeshDefinition(this, new ItemMeshDefinition() {
-//            @Override
-//            public ModelResourceLocation getModelLocation(ItemStack stack) {
-//                if (stack.getItemDamage() == 0) {
-//                    return basicModel;
-//                } else {
-//                    return plusModel;
-//                }
-//            }
-//        });
-//    }
-
     /**
-     * allows items to add custom lines of information to the mouseover description
+     * Allows items to add custom lines of information to the mouseover description
      *
-     * @param itemStack
+     * @param itemStack - the itemstack to modify
      * @param player
      * @param list
      * @param par4

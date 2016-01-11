@@ -184,8 +184,8 @@ public class InventoryPortableCrafting extends InventoryCrafting {
         if (parent != null) {
             nbtTagCompound = parent.getTagCompound();
 
-            if (nbtTagCompound != null && nbtTagCompound.hasKey("Items")) {
-                NBTTagList tagList = nbtTagCompound.getTagList("Items", 10);
+            if (nbtTagCompound != null && nbtTagCompound.hasKey(Reference.NBT.SAVED_INVENTORY_TAG)) {
+                NBTTagList tagList = nbtTagCompound.getTagList(Reference.NBT.SAVED_INVENTORY_TAG, 10);
                 this.inventory = new ItemStack[this.getSizeInventory()];
 
                 for (int i = 0; i < tagList.tagCount(); i++) {
@@ -225,6 +225,6 @@ public class InventoryPortableCrafting extends InventoryCrafting {
                 tagList.appendTag(tagCompound);
             }
         }
-        nbtTagCompound.setTag("Items", tagList);
+        nbtTagCompound.setTag(Reference.NBT.SAVED_INVENTORY_TAG, tagList);
     }
 }

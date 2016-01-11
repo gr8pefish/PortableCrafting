@@ -23,6 +23,7 @@ public class Reference {
     }
 
     public static final class NBT {
+        public static final String SAVED_INVENTORY_TAG = "Items";
         public static final String MOST_SIG_UUID = "MostSigUUID";
         public static final String LEAST_SIG_UUID = "LeastSigUUID";
     }
