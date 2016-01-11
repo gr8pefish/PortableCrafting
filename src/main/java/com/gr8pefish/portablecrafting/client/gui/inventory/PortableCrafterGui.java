@@ -40,9 +40,9 @@ public class PortableCrafterGui extends GuiContainer {
         int xStart = ((width - xSize) / 2) + 12;
         int yStart = (height - ySize) / 2;
 
-        this.buttonList.add(this.balanceButton = new PortableCrafterButton(1, xStart + 10, yStart + 16, 11, 16, PortableCrafterButton.BALANCE));
-        this.buttonList.add(this.spinButton = new PortableCrafterButton(2, xStart + 10, yStart + 32, 11, 11, PortableCrafterButton.SPIN));
-        this.buttonList.add(this.clearButton = new PortableCrafterButton(3, xStart + 10, yStart + 48, 11, 11, PortableCrafterButton.EMPTY));
+        this.buttonList.add(this.balanceButton = new PortableCrafterButton(1, xStart + 10, yStart + 21, 11, 16, PortableCrafterButton.BALANCE)); //16
+        this.buttonList.add(this.spinButton = new PortableCrafterButton(2, xStart + 10, yStart + 37, 11, 11, PortableCrafterButton.SPIN));
+        this.buttonList.add(this.clearButton = new PortableCrafterButton(3, xStart + 10, yStart + 53, 11, 11, PortableCrafterButton.EMPTY));
     }
 
 
