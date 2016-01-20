@@ -4,22 +4,40 @@ import com.gr8pefish.portablecrafting.PortableCrafting;
 import com.gr8pefish.portablecrafting.items.ItemBase;
 import com.gr8pefish.portablecrafting.util.NBTHelper;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.block.model.BakedQuad;
+import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.client.resources.model.IBakedModel;
 import net.minecraft.client.settings.GameSettings;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
+import net.minecraftforge.client.model.ISmartItemModel;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.List;
 
-public class ItemPortableCrafter extends ItemBase {
+public class ItemPortableCrafter extends ItemBase {//implements ISmartItemModel {
 
     public ItemPortableCrafter() {
         super("portable_crafter");
         setMaxStackSize(1);
         setHasSubtypes(true);
+    }
+
+    /**
+     * Should disable the item bobbing up and down when the NBT data is saved.
+     * @param oldStack - the old instance of this item
+     * @param newStack - the new one
+     * @param slotChanged - the clot to check
+     * @return - if it should do the animation
+     */
+    @Override
+    public boolean shouldCauseReequipAnimation(ItemStack oldStack, ItemStack newStack, boolean slotChanged) {
+        return false;
     }
 
     /**
@@ -69,4 +87,45 @@ public class ItemPortableCrafter extends ItemBase {
             list.add(EnumChatFormatting.ITALIC + "Bendy");
     }
 
+    //TODO: all past here
+
+//    @Override
+//    public IBakedModel handleItemState(ItemStack stack) {
+//        return Minecraft.getMinecraft().getRenderItem().getItemModelMesher().getItemModel(stack);
+//    }
+//
+//    @Override
+//    public List<BakedQuad> getFaceQuads(EnumFacing p_177551_1_) {
+//        return null;
+//    }
+//
+//    @Override
+//    public List<BakedQuad> getGeneralQuads() {
+//        return null;
+//    }
+//
+//    @Override
+//    public boolean isAmbientOcclusion() {
+//        return false;
+//    }
+//
+//    @Override
+//    public boolean isGui3d() {
+//        return false;
+//    }
+//
+//    @Override
+//    public boolean isBuiltInRenderer() {
+//        return false;
+//    }
+//
+//    @Override
+//    public TextureAtlasSprite getParticleTexture() {
+//        return null;
+//    }
+//
+//    @Override
+//    public ItemCameraTransforms getItemCameraTransforms() {
+//        return null;
+//    }
 }

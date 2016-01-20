@@ -1,4 +1,8 @@
 Fix:
 
 Add:
-    Fancy rendering of items in the crafting grid on the item?
+    Fancy rendering of items in the crafting grid on the item? - check TCon crafting station
+        ISmartItemModel - check that out
+        use properties?
+        https://github.com/SlimeKnights/TinkersConstruct/blob/master/src/main/java/slimeknights/tconstruct/shared/client/BakedTableModel.java#L131
+        IBakedModel ibakedmodel = Minecraft.getMinecraft().getRenderItem().getItemModelMesher().getItemModel(itemStackA);

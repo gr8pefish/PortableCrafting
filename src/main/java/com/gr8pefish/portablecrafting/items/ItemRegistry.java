@@ -23,8 +23,8 @@ public class ItemRegistry {
      * Register Items
      */
     public static void registerItems() {
-        portableCrafter = (ItemPortableCrafter)registerItem(new ItemPortableCrafter());
-        subCrafting = (ItemSubCrafting)registerItem(new ItemSubCrafting());
+        portableCrafter = (ItemPortableCrafter)registerItem(new ItemPortableCrafter(), "ItemPortableCrafter");
+        subCrafting = (ItemSubCrafting)registerItem(new ItemSubCrafting(), "ItemSubCrafting");
     }
 
     /**
@@ -33,7 +33,7 @@ public class ItemRegistry {
     public static void registerRenders() {
         InventoryRenderHelper helper = PortableCrafting.proxy.getRenderHelper();
 
-        helper.itemRender(portableCrafter, "portable_crafter");
+        helper.itemRender(portableCrafter, "ItemPortableCrafter");
         helper.itemRender(subCrafting, 0);
         helper.itemRender(subCrafting, 1);
     }
@@ -67,10 +67,6 @@ public class ItemRegistry {
     private static Item registerItem(Item item, String name) {
         GameRegistry.registerItem(item, name);
         return item;
-    }
-
-    private static Item registerItem(Item item) {
-        return registerItem(item, item.getClass().getSimpleName());
     }
 
 }

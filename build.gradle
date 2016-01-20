@@ -116,17 +116,20 @@ def curseRelations = {
     optionalLibrary 'just-enough-items-jei'
 }
 
-//curseforge {
-//    if (project.hasProperty('curse_key_portableCrafting'))
-//        apiKey = project.curse_key_portableCrafting
-//
-//    project {
-//        id = "${curse_id}"
-//        changelog = getChangelogText()
-//        releaseType = 'beta'
-//
-//        addGameVersion '1.8.9'
-//
-//        relations curseRelations
-//    }
-//}
+curseforge {
+    if (project.hasProperty('curse_key_portableCrafting'))
+        apiKey = project.curse_key_portableCrafting
+
+    project {
+        id = "${curse_id}"
+        changelog = getChangelogText()
+        releaseType = 'release'
+
+        addGameVersion '1.8.9'
+
+        relations curseRelations
+    }
+}
+
+//curseforge uses these tasks
+tasks.curseforge.dependsOn clean, build

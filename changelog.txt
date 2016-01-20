@@ -1,4 +1,10 @@
 ------------------------------------------------------
+PortableCrafting-1.8.9-1.1
+------------------------------------------------------
+- Fixed textures not appearing for the crafting core and the blueprints (Closes #1)
+- Changed it so the reequip animation isn't shown (i.e. no portable crafter item bobbing up and down in the player's hands)
+- Changed default keybinding of opening portable crafter to 'x'
+------------------------------------------------------
 PortableCrafting-1.8.9-1.0
 ------------------------------------------------------
 - Initial Release

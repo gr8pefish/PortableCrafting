@@ -22,7 +22,7 @@ public class KeyInputEventHandler {
     public static KeyBinding openCrafter;
 
     public void init() {
-        openCrafter = new KeyBinding("key.open_portable_crafter.desc", Keyboard.KEY_C, "portablecrafting");
+        openCrafter = new KeyBinding("key.open_portable_crafter.desc", Keyboard.KEY_X, "portablecrafting");
         ClientRegistry.registerKeyBinding(openCrafter);
         FMLCommonHandler.instance().bus().register(this);
     }
