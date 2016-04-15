@@ -20,8 +20,8 @@ public class PortableCraftingHelper {
     public static ItemStack getPortableCrafter(EntityPlayer player) {
         ItemStack crafter = null;
 
-        if (player.getHeldItem() != null && player.getHeldItem().getItem() instanceof ItemPortableCrafter) {
-            crafter = player.getHeldItem();
+        if (player.getHeldItemMainhand() != null && player.getHeldItemMainhand().getItem() instanceof ItemPortableCrafter) {
+            crafter = player.getHeldItemMainhand();
         } else {
             for (int i = 0; i < player.inventory.getSizeInventory(); i++) {
                 ItemStack stack = player.inventory.getStackInSlot(i);

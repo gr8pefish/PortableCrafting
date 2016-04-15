@@ -5,6 +5,7 @@ import com.gr8pefish.portablecrafting.util.NBTHelper;
 import com.gr8pefish.portablecrafting.util.PortableCraftingHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.inventory.ClickType;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.InventoryCraftResult;
@@ -89,7 +90,7 @@ public class PortableCrafterContainer extends Container {
     }
 
     @Override
-    public ItemStack slotClick(int slotIndex, int par2, int par3, EntityPlayer entityPlayer) {
+    public ItemStack slotClick(int slotIndex, int par2, ClickType clickType, EntityPlayer entityPlayer) {
         if (slotIndex >= 0 && slotIndex <= inventoryItemStacks.size()) {
             ItemStack clickedStack = (ItemStack) inventoryItemStacks.get(slotIndex);
             if (clickedStack != null && clickedStack.getItem() instanceof ItemPortableCrafter && NBTHelper.hasUUID(clickedStack) && NBTHelper.hasUUID(craftingMatrix.parent) && NBTHelper.getUUID(clickedStack).equals(NBTHelper.getUUID(craftingMatrix.parent))) {
@@ -97,7 +98,7 @@ public class PortableCrafterContainer extends Container {
             }
         }
 
-        return super.slotClick(slotIndex, par2, par3, entityPlayer);
+        return super.slotClick(slotIndex, par2, clickType, entityPlayer);
     }
 
     /**
