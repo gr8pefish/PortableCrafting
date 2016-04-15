@@ -7,8 +7,7 @@ import com.gr8pefish.portablecrafting.network.message.PortableCrafterMessage;
 import com.gr8pefish.portablecrafting.reference.Reference;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.StatCollector;
+import net.minecraft.util.text.translation.I18n;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.opengl.GL11;
@@ -46,8 +45,8 @@ public class PortableCrafterGui extends GuiContainer {
 
     @Override
     protected void drawGuiContainerForegroundLayer(int x, int y) {
-        fontRendererObj.drawString(StatCollector.translateToLocal("crafting.portablecrafting"), 41, 6, 4210752); //"Portable Crafter" at the top
-        fontRendererObj.drawString(StatCollector.translateToLocal("container.inventory"), 20, 73, 4210752); //"Inventory" above your inventory
+        fontRendererObj.drawString(I18n.translateToLocal("crafting.portablecrafting"), 41, 6, 4210752); //"Portable Crafter" at the top
+        fontRendererObj.drawString(I18n.translateToLocal("container.inventory"), 20, 73, 4210752); //"Inventory" above your inventory
     }
 
     @Override

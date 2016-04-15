@@ -7,20 +7,11 @@ import mezz.jei.api.*;
 import mezz.jei.api.recipe.VanillaRecipeCategoryUid;
 
 @mezz.jei.api.JEIPlugin
-public class JEIPlugin implements IModPlugin {
-
-    public static IJeiHelpers jeiHelpers;
-
-    @Override
-    public void onJeiHelpersAvailable(IJeiHelpers jeiHelpers) {
-        JEIPlugin.jeiHelpers = jeiHelpers;
-    }
-
-    @Override
-    public void onItemRegistryAvailable(IItemRegistry itemRegistry) {}
+public class JEIPlugin extends BlankModPlugin {
 
     @Override
     public void register(IModRegistry registry) {
+        IJeiHelpers jeiHelpers = registry.getJeiHelpers();
 
         //add Shift-clicking from [+] into grid
         registry.getRecipeTransferRegistry().addRecipeTransferHandler(PortableCrafterContainer.class, VanillaRecipeCategoryUid.CRAFTING, 1, 9, 10, 36);
@@ -29,7 +20,4 @@ public class JEIPlugin implements IModPlugin {
         INbtIgnoreList ignoreList = jeiHelpers.getNbtIgnoreList();
         ignoreList.ignoreNbtTagNames(ItemRegistry.portableCrafter, Reference.NBT.SAVED_INVENTORY_TAG, Reference.NBT.LEAST_SIG_UUID, Reference.NBT.MOST_SIG_UUID);
     }
-
-    @Override
-    public void onRecipeRegistryAvailable(IRecipeRegistry recipeRegistry) {}
 }

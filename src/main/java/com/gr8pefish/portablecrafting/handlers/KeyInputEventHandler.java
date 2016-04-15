@@ -7,6 +7,7 @@ import com.gr8pefish.portablecrafting.reference.Reference;
 import com.gr8pefish.portablecrafting.util.PortableCraftingHelper;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.FMLCommonHandler;
@@ -24,7 +25,7 @@ public class KeyInputEventHandler {
     public void init() {
         openCrafter = new KeyBinding("key.open_portable_crafter.desc", Keyboard.KEY_X, "portablecrafting");
         ClientRegistry.registerKeyBinding(openCrafter);
-        FMLCommonHandler.instance().bus().register(this);
+        MinecraftForge.EVENT_BUS.register(this);
     }
 
     @SubscribeEvent

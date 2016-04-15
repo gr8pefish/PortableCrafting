@@ -46,13 +46,13 @@ public class ItemRegistry {
                 "a",
                 "w",
                 "c",
-                'a', Items.apple, 'w', Blocks.crafting_table, 'c', Blocks.chest);
+                'a', Items.APPLE, 'w', Blocks.CRAFTING_TABLE, 'c', Blocks.CHEST);
 
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemRegistry.subCrafting, 1, 1),
                 "lll",
                 "lbl",
                 "lll",
-                'l', "gemLapis", 'b', Items.book));
+                'l', "gemLapis", 'b', Items.BOOK));
 
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemRegistry.portableCrafter, 1),
                 "ibi",

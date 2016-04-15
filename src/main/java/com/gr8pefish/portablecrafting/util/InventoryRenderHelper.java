@@ -2,8 +2,8 @@ package com.gr8pefish.portablecrafting.util;
 
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.ItemMeshDefinition;
-import net.minecraft.client.resources.model.ModelBakery;
-import net.minecraft.client.resources.model.ModelResourceLocation;
+import net.minecraft.client.renderer.block.model.ModelBakery;
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
@@ -43,7 +43,7 @@ public class InventoryRenderHelper {
     public void itemRender(Item item, int meta, String name) {
         String resName = domain + name;
 
-        ModelBakery.addVariantName(item, resName);
+        ModelBakery.registerItemVariants(item, new ModelResourceLocation(resName));
         ModelLoader.setCustomModelResourceLocation(item, meta, new ModelResourceLocation(resName, "inventory"));
     }
 
