@@ -117,15 +117,15 @@ def curseRelations = {
 }
 
 curseforge {
-    if (project.hasProperty('curse_key_portableCrafting'))
-        apiKey = project.curse_key_portableCrafting
+    if (project.hasProperty('curse_key_portable_crafting'))
+        apiKey = project.curse_key_portable_crafting
 
     project {
         id = "${curse_id}"
         changelog = getChangelogText()
         releaseType = 'release'
 
-        addGameVersion '1.8.9'
+        addGameVersion '1.9'
 
         relations curseRelations
     }

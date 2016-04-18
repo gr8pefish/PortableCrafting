@@ -1,7 +1,8 @@
 ------------------------------------------------------
-PortableCrafting-1.8.9-1.2
+PortableCrafting-1.9-1.0
 ------------------------------------------------------
--
+- Initial port to 1.9! Credit to Awkanic for starting this process.
+- Fixed some minor bugs that arose from the port such as swapping items into the offhand and scaling of the models. Still work to do, but it's a good intro to 1.9 modding.
 ------------------------------------------------------
 PortableCrafting-1.8.9-1.1
 ------------------------------------------------------

@@ -25,16 +25,17 @@ public class ItemPortableCrafter extends ItemBase {//implements ISmartItemModel 
         setHasSubtypes(true);
     }
 
+    //TODO: not working correctly, still refreshes, due to odd swapping with offhand stuff
     /**
      * Should disable the item bobbing up and down when the NBT data is saved.
      * @param oldStack - the old instance of this item
      * @param newStack - the new one
-     * @param slotChanged - the clot to check
+     * @param slotChanged - the slot to check
      * @return - if it should do the animation
      */
     @Override
     public boolean shouldCauseReequipAnimation(ItemStack oldStack, ItemStack newStack, boolean slotChanged) {
-        return false;
+        return !oldStack.getItem().equals(newStack.getItem());
     }
 
     /**
@@ -50,7 +51,7 @@ public class ItemPortableCrafter extends ItemBase {//implements ISmartItemModel 
      *
      * @param itemStack - the stack clicked
      * @param world - the world of the event
-     * @param player - the player doign the clicking
+     * @param player - the player doing the clicking
      */
     @Override
     public ActionResult<ItemStack> onItemRightClick(ItemStack itemStack, World world, EntityPlayer player, EnumHand hand) {
@@ -83,46 +84,4 @@ public class ItemPortableCrafter extends ItemBase {//implements ISmartItemModel 
         if (itemStack.getItemDamage() == 1)
             list.add(TextFormatting.ITALIC + "Bendy");
     }
-
-    //TODO: all past here
-
-//    @Override
-//    public IBakedModel handleItemState(ItemStack stack) {
-//        return Minecraft.getMinecraft().getRenderItem().getItemModelMesher().getItemModel(stack);
-//    }
-//
-//    @Override
-//    public List<BakedQuad> getFaceQuads(EnumFacing p_177551_1_) {
-//        return null;
-//    }
-//
-//    @Override
-//    public List<BakedQuad> getGeneralQuads() {
-//        return null;
-//    }
-//
-//    @Override
-//    public boolean isAmbientOcclusion() {
-//        return false;
-//    }
-//
-//    @Override
-//    public boolean isGui3d() {
-//        return false;
-//    }
-//
-//    @Override
-//    public boolean isBuiltInRenderer() {
-//        return false;
-//    }
-//
-//    @Override
-//    public TextureAtlasSprite getParticleTexture() {
-//        return null;
-//    }
-//
-//    @Override
-//    public ItemCameraTransforms getItemCameraTransforms() {
-//        return null;
-//    }
 }
