@@ -18,7 +18,7 @@ public class JEIPlugin extends BlankModPlugin {
         registry.getRecipeTransferRegistry().addRecipeTransferHandler(PortableCrafterContainer.class, VanillaRecipeCategoryUid.CRAFTING, 1, 9, 10, 36);
 
         //add in clickable (see recipes) arrow
-        registry.addRecipeClickArea(PortableCrafterGui.class, 102, 32, 24, 18, VanillaRecipeCategoryUid.CRAFTING);
+        registry.addRecipeClickArea(PortableCrafterGui.class, 102, 34, 21, 16, VanillaRecipeCategoryUid.CRAFTING);
 
         //ignore nbt data of portable crafter so it shows in JEI
         INbtIgnoreList ignoreList = jeiHelpers.getNbtIgnoreList();
