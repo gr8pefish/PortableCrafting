@@ -7,7 +7,7 @@ item.portablecrafting:subcrafting.crafting_core.name=Crafting Core
 itemGroup.portablecrafting=Portable Crafting
 
 # Misc stuff
-crafting.portablecrafting=Portable Crafter
+crafting.portablecrafting=Portable Crafting
 
 # Keybindings
 key.open_portablecrafting.desc=Open Crafter
