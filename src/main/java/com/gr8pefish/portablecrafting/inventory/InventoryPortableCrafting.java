@@ -60,7 +60,7 @@ public class InventoryPortableCrafting extends InventoryCrafting {
      */
     @Override
     public void setInventorySlotContents(int slotIndex, ItemStack itemStack) {
-        handler.setStackInSlot(slotIndex, itemStack);
+        handler.setStackInSlot(slotIndex, itemStack); //just eats my items :( I click on the slot and they disappear immediately
 //        inventory[slotIndex] = itemStack;
 //        if (itemStack != null && itemStack.stackSize > getInventoryStackLimit()) {
 //            itemStack.stackSize = getInventoryStackLimit();
@@ -77,7 +77,8 @@ public class InventoryPortableCrafting extends InventoryCrafting {
     public ItemStack getStackInRowAndColumn(int row, int col) {
         if (row >= 0 && row < 3) {
             int k = row + col * 3;
-            return this.getStackInSlot(k);
+            return handler.getStackInSlot(k);
+            //return this.getStackInSlot(k);
         } else {
             return null;
         }
@@ -89,7 +90,8 @@ public class InventoryPortableCrafting extends InventoryCrafting {
      */
     @Override
     public ItemStack getStackInSlot(int slotIndex) {
-        return slotIndex >= this.getSizeInventory() ? null : this.inventory[slotIndex];
+        return handler.getStackInSlot(slotIndex);
+        //return slotIndex >= this.getSizeInventory() ? null : this.inventory[slotIndex];
     }
 
     /**
@@ -109,27 +111,28 @@ public class InventoryPortableCrafting extends InventoryCrafting {
      */
     @Override
     public ItemStack decrStackSize(int slotIndex, int amount) {
-        if (this.inventory[slotIndex] != null) {
-            ItemStack itemstack;
-
-            if (this.inventory[slotIndex].stackSize <= amount) {
-                itemstack = this.inventory[slotIndex];
-                this.inventory[slotIndex] = null;
-                this.eventHandler.onCraftMatrixChanged(this);
-                return itemstack;
-            } else {
-                itemstack = this.inventory[slotIndex].splitStack(amount);
-
-                if (this.inventory[slotIndex].stackSize == 0) {
-                    this.inventory[slotIndex] = null;
-                }
-
-                this.eventHandler.onCraftMatrixChanged(this);
-                return itemstack;
-            }
-        } else {
-            return null;
-        }
+        return handler.extractItem(slotIndex, amount, false);
+//        if (this.inventory[slotIndex] != null) {
+//            ItemStack itemstack;
+//
+//            if (this.inventory[slotIndex].stackSize <= amount) {
+//                itemstack = this.inventory[slotIndex];
+//                this.inventory[slotIndex] = null;
+//                this.eventHandler.onCraftMatrixChanged(this);
+//                return itemstack;
+//            } else {
+//                itemstack = this.inventory[slotIndex].splitStack(amount);
+//
+//                if (this.inventory[slotIndex].stackSize == 0) {
+//                    this.inventory[slotIndex] = null;
+//                }
+//
+//                this.eventHandler.onCraftMatrixChanged(this);
+//                return itemstack;
+//            }
+//        } else {
+//            return null;
+//        }
     }
 
     /**
