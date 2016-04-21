@@ -12,16 +12,21 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
+import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.common.capabilities.CapabilityInject;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
+import net.minecraftforge.items.ItemStackHandler;
 
 import java.util.List;
 
-public class ItemPortableCrafter extends ItemBase implements IItemHandler {//implements ISmartItemModel {
+public class ItemPortableCrafter extends ItemBase {//implements ISmartItemModel {
 
     public ItemPortableCrafter() {
         super("portable_crafter");
@@ -85,26 +90,5 @@ public class ItemPortableCrafter extends ItemBase implements IItemHandler {//imp
         list.add(hl + GameSettings.getKeyDisplayString(Minecraft.getMinecraft().gameSettings.keyBindBack.getKeyCode()) + rst + " key to clear the grid");
         list.add(hl + GameSettings.getKeyDisplayString(Minecraft.getMinecraft().gameSettings.keyBindLeft.getKeyCode()) + rst + " and " + hl + GameSettings.getKeyDisplayString(Minecraft.getMinecraft().gameSettings.keyBindRight.getKeyCode()) + rst + " keys to spin");
 
-    }
-
-    //TODO: Idk what this does, what is the point and where does it go?
-    @Override
-    public int getSlots() {
-        return 9;
-    }
-
-    @Override
-    public ItemStack getStackInSlot(int slot) {
-        return null;
-    }
-
-    @Override
-    public ItemStack insertItem(int slot, ItemStack stack, boolean simulate) {
-        return null;
-    }
-
-    @Override
-    public ItemStack extractItem(int slot, int amount, boolean simulate) {
-        return null;
     }
 }

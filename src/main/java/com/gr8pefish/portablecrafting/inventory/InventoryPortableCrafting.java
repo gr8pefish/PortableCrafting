@@ -9,6 +9,10 @@ import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
+import net.minecraftforge.common.capabilities.ICapabilityProvider;
+import net.minecraftforge.items.CapabilityItemHandler;
+import net.minecraftforge.items.IItemHandler;
+import net.minecraftforge.items.ItemStackHandler;
 
 import java.util.UUID;
 
@@ -20,11 +24,24 @@ public class InventoryPortableCrafting extends InventoryCrafting {
     protected ItemStack[] inventory;
     private Container eventHandler;
 
+    private ItemStackHandler handler;
+
     // This class gets instantiated when we right click a clipboard. Called from the GuiHandler
     public InventoryPortableCrafting(EntityPlayer player, ItemStack itemStack) {
         super(null, 3, 3);
 
         this.parent = itemStack;
+        IItemHandler iitem = parent.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);
+        if (iitem != null){
+            try{
+                System.out.println("Successful loading");
+                this.handler = (ItemStackHandler) iitem;
+            }catch (Exception e){
+                System.out.println("Unsucessful loading");
+                this.handler = new ItemStackHandler(9);
+                System.out.println(e.toString());
+            }
+        }
         this.player = player;
 
         this.inventory = new ItemStack[this.getSizeInventory()];
@@ -43,10 +60,11 @@ public class InventoryPortableCrafting extends InventoryCrafting {
      */
     @Override
     public void setInventorySlotContents(int slotIndex, ItemStack itemStack) {
-        inventory[slotIndex] = itemStack;
-        if (itemStack != null && itemStack.stackSize > getInventoryStackLimit()) {
-            itemStack.stackSize = getInventoryStackLimit();
-        }
+        handler.setStackInSlot(slotIndex, itemStack);
+//        inventory[slotIndex] = itemStack;
+//        if (itemStack != null && itemStack.stackSize > getInventoryStackLimit()) {
+//            itemStack.stackSize = getInventoryStackLimit();
+//        }
         eventHandler.onCraftMatrixChanged(this);
     }
 
@@ -79,7 +97,8 @@ public class InventoryPortableCrafting extends InventoryCrafting {
      */
     @Override
     public int getSizeInventory() {
-        return 9;
+        return handler.getSlots();
+        //return 9;
     }
 
     /**

@@ -235,6 +235,7 @@ public class PortableCrafterContainer extends Container {
         }
 
         for (int i = 0; i < original.length; i++) {
+
             craftingMatrix.setInventorySlotContents(original[i], tempStacks.get(rotated[i]));
         }
     }

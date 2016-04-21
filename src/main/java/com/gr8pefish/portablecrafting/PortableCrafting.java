@@ -1,5 +1,6 @@
 package com.gr8pefish.portablecrafting;
 
+import com.gr8pefish.portablecrafting.events.EventHandler;
 import com.gr8pefish.portablecrafting.handlers.GuiHandler;
 import com.gr8pefish.portablecrafting.items.ItemRegistry;
 import com.gr8pefish.portablecrafting.network.PacketHandler;
@@ -7,6 +8,7 @@ import com.gr8pefish.portablecrafting.proxy.CommonProxy;
 import com.gr8pefish.portablecrafting.reference.Reference;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -49,6 +51,10 @@ public class PortableCrafting {
 
     @Mod.EventHandler
     public void init(FMLInitializationEvent event) {
+
+        //register event handler
+        EventHandler forgeEventHandler = new EventHandler();
+        MinecraftForge.EVENT_BUS.register(forgeEventHandler);
 
         //Gui Handler
         NetworkRegistry.INSTANCE.registerGuiHandler(instance, new GuiHandler());

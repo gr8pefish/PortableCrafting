@@ -8,3 +8,5 @@ Add:
     fix keybinding not localized in options
 
     general cleanup
+
+    https://github.com/williewillus/Botania/blob/MC19/src/main/java/vazkii/botania/common/block/tile/TileSimpleInventory.java
