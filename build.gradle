@@ -126,7 +126,7 @@ curseforge {
         changelog = getChangelogText()
         releaseType = 'release'
 
-        addGameVersion '1.9'
+        addGameVersion "1.10"
 
         relations curseRelations
     }
