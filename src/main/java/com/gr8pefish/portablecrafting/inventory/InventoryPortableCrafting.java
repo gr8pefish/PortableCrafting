@@ -46,6 +46,8 @@ public class InventoryPortableCrafting extends InventoryCrafting {
 
         this.inventory = new ItemStack[this.getSizeInventory()];
 
+        //handler.deserializeNBT(parent.getTagCompound());
+
         readFromNBT(parent.getTagCompound());
     }
 
@@ -202,13 +204,15 @@ public class InventoryPortableCrafting extends InventoryCrafting {
 
             if (nbtTagCompound != null && nbtTagCompound.hasKey(Reference.NBT.SAVED_INVENTORY_TAG)) {
                 NBTTagList tagList = nbtTagCompound.getTagList(Reference.NBT.SAVED_INVENTORY_TAG, 10);
-                this.inventory = new ItemStack[this.getSizeInventory()];
+
+                //this.inventory = new ItemStack[this.getSizeInventory()];
 
                 for (int i = 0; i < tagList.tagCount(); i++) {
                     NBTTagCompound stackTag = tagList.getCompoundTagAt(i);
                     int j = stackTag.getByte("Slot");
-                    if (i >= 0 && i <= inventory.length) {
-                        this.inventory[j] = ItemStack.loadItemStackFromNBT(stackTag);
+                    if (i >= 0 && i <= handler.getSlots()) {
+                        handler.setStackInSlot(j, ItemStack.loadItemStackFromNBT(stackTag));
+                        //this.inventory[j] = ItemStack.loadItemStackFromNBT(stackTag);
                     }
                 }
             }
@@ -225,6 +229,7 @@ public class InventoryPortableCrafting extends InventoryCrafting {
         }
 
         writeToNBT(nbtTagCompound);
+        //handler.serializeNBT();
         parent.setTagCompound(nbtTagCompound);
     }
 
@@ -235,11 +240,12 @@ public class InventoryPortableCrafting extends InventoryCrafting {
         // Write the ItemStacks in the inventory to NBT
         NBTTagList tagList = new NBTTagList();
 
-        for (int i = 0; i < inventory.length; i++) {
-            if (inventory[i] != null) {
+        for (int i = 0; i < handler.getSlots(); i++) {
+            if (handler.getStackInSlot(i) != null) {
                 NBTTagCompound tagCompound = new NBTTagCompound();
                 tagCompound.setByte("Slot", (byte) i);
-                inventory[i].writeToNBT(tagCompound);
+                handler.getStackInSlot(i).writeToNBT(nbtTagCompound);
+                //inventory[i].writeToNBT(tagCompound);
                 tagList.appendTag(tagCompound);
             }
         }

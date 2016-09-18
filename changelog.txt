@@ -2,6 +2,7 @@
 PortableCrafting-1.9-1.0
 ------------------------------------------------------
 - Add clickable arrow to JEI.
+- Internall change to IItemProvider with capabilities
 ------------------------------------------------------
 PortableCrafting-1.9-1.0
 ------------------------------------------------------

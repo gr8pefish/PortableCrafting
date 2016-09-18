@@ -22,15 +22,17 @@ public class EventHandler {
     public void AttachCapEvent(AttachCapabilitiesEvent.Item e) { //WHATS GOING ON HERE? DUN DUNDUNDUNDUN
         if (e.getItem()!= null && e.getItem() instanceof ItemPortableCrafter) { //if my item
             Map<ResourceLocation, ICapabilityProvider> map = e.getCapabilities();
+            if (e.getItemStack().hasCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null)) System.out.println("has cap");
             for (Map.Entry<ResourceLocation,ICapabilityProvider> entry : map.entrySet()) { //empty always it seems
                 ResourceLocation key = entry.getKey();
                 ICapabilityProvider value = entry.getValue();
                 System.out.println("KEY: "+key.toString());
                 System.out.println("VALUE: "+value.toString());
             }
-            if (e.getCapabilities().isEmpty()) { //add capability if nonexistent
+            if (e.getCapabilities().isEmpty()) { //add capability if nonexistent //TODO, this is occurring every time for some reason
+                e.getItem().initCapabilities(e.getItemStack(), e.getItemStack().serializeNBT()); //what does this do?
                 System.out.println("adding cap");
-                e.addCapability(new ResourceLocation(Reference.MOD.MODID), new CapabilityProvider());
+                e.addCapability(new ResourceLocation(Reference.MOD.MODID+".portableCrafter"), new CapabilityProvider());
             }else{
                 CapabilityProvider provider = (CapabilityProvider)e.getCapabilities().get(new ResourceLocation(Reference.MOD.MODID));
                 ItemStackHandler handler = (ItemStackHandler)provider.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);

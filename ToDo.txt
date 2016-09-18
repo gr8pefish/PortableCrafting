@@ -10,3 +10,7 @@ Add:
     general cleanup
 
     https://github.com/williewillus/Botania/blob/MC19/src/main/java/vazkii/botania/common/block/tile/TileSimpleInventory.java
+    talk to gigahertz regarding IEEP -> capability (he wrote the doc)
+
+    https://github.com/sinkillerj/ProjectE/commit/accba3e7cefc0bb2416bba11a1c52d1796e5c0b8
+    https://gist.github.com/williewillus/c8dc2a1e7963b57ef436c699f25a710d

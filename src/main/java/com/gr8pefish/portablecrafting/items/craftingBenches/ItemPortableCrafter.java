@@ -1,6 +1,7 @@
 package com.gr8pefish.portablecrafting.items.craftingBenches;
 
 import com.gr8pefish.portablecrafting.PortableCrafting;
+import com.gr8pefish.portablecrafting.handlers.CapabilityProvider;
 import com.gr8pefish.portablecrafting.inventory.InventoryPortableCrafting;
 import com.gr8pefish.portablecrafting.inventory.PortableCrafterContainer;
 import com.gr8pefish.portablecrafting.items.ItemBase;
@@ -10,6 +11,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.settings.GameSettings;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
@@ -18,6 +20,7 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.CapabilityInject;
+import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.CapabilityItemHandler;
@@ -32,6 +35,12 @@ public class ItemPortableCrafter extends ItemBase {//implements ISmartItemModel 
         super("portable_crafter");
         setMaxStackSize(1);
         setHasSubtypes(true);
+    }
+
+    @Override
+    public ICapabilityProvider initCapabilities(ItemStack stack, NBTTagCompound nbt) {
+        //stack.deserializeNBT(nbt);
+        return new CapabilityProvider();
     }
 
     //TODO: not working correctly, still refreshes, due to odd swapping with offhand stuff
