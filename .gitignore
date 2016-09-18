@@ -53,3 +53,4 @@ notes.txt
 /libs
 src/main/resources/assets/portablecrafting/textures/items/portable_crafter_alt.png
 src/main/resources/assets/portablecrafting/textures/items/portable_crafter_original.png
+*.hprof
