@@ -10,4 +10,4 @@ itemGroup.portablecrafting=Portable Crafting
 crafting.portablecrafting=Portable Crafting
 
 # Keybindings
-key.open_portablecrafting.desc=Open Crafter
+key.open_portable_crafter.desc=Open Crafter

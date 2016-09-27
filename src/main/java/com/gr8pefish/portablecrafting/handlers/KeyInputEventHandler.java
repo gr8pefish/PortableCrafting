@@ -23,7 +23,7 @@ public class KeyInputEventHandler {
     public static KeyBinding openCrafter;
 
     public void init() {
-        openCrafter = new KeyBinding("key.open_portable_crafter.desc", Keyboard.KEY_X, "portablecrafting");
+        openCrafter = new KeyBinding("key.open_portable_crafter.desc", Keyboard.KEY_X, "Portable Crafting");
         ClientRegistry.registerKeyBinding(openCrafter);
         MinecraftForge.EVENT_BUS.register(this);
     }
