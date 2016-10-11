@@ -11,7 +11,7 @@ import java.util.List;
 
 public class ItemSubCrafting extends ItemBase {
 
-    public String[] names = {"crafting_core", "blueprints"};
+    public String[] names = {"crafting_core"};
 
     public ItemSubCrafting() {
         super("subcrafting.");
