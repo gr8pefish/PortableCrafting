@@ -35,7 +35,6 @@ public class ItemRegistry {
 
         helper.itemRender(portableCrafter, "ItemPortableCrafter");
         helper.itemRender(subCrafting, 0);
-        helper.itemRender(subCrafting, 1);
     }
 
     /**
@@ -48,18 +47,12 @@ public class ItemRegistry {
                 "c",
                 'a', Items.APPLE, 'w', Blocks.CRAFTING_TABLE, 'c', Blocks.CHEST);
 
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemRegistry.subCrafting, 1, 1),
-                "lll",
-                "lbl",
-                "lll",
-                'l', "gemLapis", 'b', Items.BOOK));
-
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemRegistry.portableCrafter, 1),
                 "ibi",
                 "iri",
                 "ici",
                 'i', "logWood", 'b', new ItemStack(ItemRegistry.subCrafting, 1, 0),
-                'c', new ItemStack(ItemRegistry.subCrafting, 1, 1), 'r', "ingotIron"));
+                'c', Items.WRITABLE_BOOK, 'r', "ingotIron"));
     }
 
     //Helper methods for registration

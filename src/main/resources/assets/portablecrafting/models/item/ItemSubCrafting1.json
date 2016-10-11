@@ -1,6 +1,0 @@
-{
-  "parent": "portablecrafting:item/base_model",
-  "textures": {
-    "layer0": "portablecrafting:items/blueprints"
-  }
-}

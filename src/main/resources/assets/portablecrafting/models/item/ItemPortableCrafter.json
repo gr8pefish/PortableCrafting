@@ -1,6 +1,18 @@
 {
   "parent": "portablecrafting:item/base_model",
   "textures": {
-    "layer0": "portablecrafting:items/portable_crafter"
+    "layer0": "portablecrafting:items/portable_crafter_unity"
+  },
+  "display": {
+    "firstperson_lefthand": {
+      "rotation": [ 0, 0, 0 ],
+      "translation": [ 0, 3, 1 ],
+      "scale": [ 0.55, 0.55, 0.55 ]
+    },
+    "firstperson_righthand": {
+      "rotation": [ 0, -90, 25 ],
+      "translation": [ 1.13, 3.2, 1.13],
+      "scale": [ 0.55, 0.55, 0.55 ]
+    }
   }
 }

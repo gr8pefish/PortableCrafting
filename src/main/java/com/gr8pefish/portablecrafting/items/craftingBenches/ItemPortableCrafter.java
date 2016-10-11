@@ -9,6 +9,7 @@ import com.gr8pefish.portablecrafting.util.PortableCraftingHelper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.settings.GameSettings;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
@@ -29,7 +30,7 @@ public class ItemPortableCrafter extends ItemBase implements IItemHandler {//imp
         setHasSubtypes(true);
     }
 
-    //TODO: not working correctly, still refreshes, due to odd swapping with offhand stuff
+
     /**
      * Should disable the item bobbing up and down when the NBT data is saved.
      * @param oldStack - the old instance of this item
