@@ -5,6 +5,6 @@ Add:
 
     Add JEI clickable arrow for recipes
 
-    fix keybinding not localized in options
-
     general cleanup
+
+    Look into adding trash slot
