@@ -3,15 +3,13 @@ package com.gr8pefish.portablecrafting.items;
 import com.gr8pefish.portablecrafting.PortableCrafting;
 import com.gr8pefish.portablecrafting.items.craftingBenches.ItemPortableCrafter;
 import com.gr8pefish.portablecrafting.items.craftingItems.ItemSubCrafting;
-import com.gr8pefish.portablecrafting.plugins.jei.JEIPlugin;
-import com.gr8pefish.portablecrafting.reference.Reference;
 import com.gr8pefish.portablecrafting.util.InventoryRenderHelper;
-import mezz.jei.api.INbtIgnoreList;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.common.registry.IForgeRegistry;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 
 public class ItemRegistry {
@@ -23,8 +21,8 @@ public class ItemRegistry {
      * Register Items
      */
     public static void registerItems() {
-        portableCrafter = (ItemPortableCrafter)registerItem(new ItemPortableCrafter(), "ItemPortableCrafter");
-        subCrafting = (ItemSubCrafting)registerItem(new ItemSubCrafting(), "ItemSubCrafting");
+        portableCrafter = (ItemPortableCrafter)registerItem(new ItemPortableCrafter(), "portable_crafter");
+        subCrafting = (ItemSubCrafting)registerItem(new ItemSubCrafting(), "crafting_core");
     }
 
     /**
@@ -33,8 +31,8 @@ public class ItemRegistry {
     public static void registerRenders() {
         InventoryRenderHelper helper = PortableCrafting.proxy.getRenderHelper();
 
-        helper.itemRender(portableCrafter, "ItemPortableCrafter");
-        helper.itemRender(subCrafting, 0);
+        helper.itemRender(portableCrafter, "portable_crafter");
+        helper.itemRender(subCrafting, "crafting_core");
     }
 
     /**
@@ -58,7 +56,8 @@ public class ItemRegistry {
     //Helper methods for registration
 
     private static Item registerItem(Item item, String name) {
-        GameRegistry.registerItem(item, name);
+        item.setRegistryName(name);
+        GameRegistry.register(item);
         return item;
     }
 

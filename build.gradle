@@ -18,7 +18,7 @@ apply plugin: 'net.minecraftforge.gradle.forge'
 
 group = package_group
 archivesBaseName = mod_name
-version = "${mc_version}-${mod_version}"
+version = "MC${mc_version}-${mod_version}"
 
 import org.ajoberstar.grgit.*
 
@@ -32,9 +32,9 @@ repositories {
     maven { url "http://dvs1.progwml6.com/files/maven" }
 }
 
-dependencies {
-    deobfCompile "mezz.jei:jei_${mc_version}:${jei_version}"
-}
+//dependencies {
+//    deobfCompile "mezz.jei:jei_${mc_version}:${jei_version}"
+//}
 
 minecraft {
     version = "${mc_version}-${forge_version}"
@@ -124,9 +124,9 @@ curseforge {
     project {
         id = "${curse_id}"
         changelog = getChangelogText()
-        releaseType = 'release'
+        releaseType = 'alpha'
 
-        addGameVersion "1.10"
+        addGameVersion "1.11"
 
         relations curseRelations
     }

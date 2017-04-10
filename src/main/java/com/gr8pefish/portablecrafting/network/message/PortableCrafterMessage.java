@@ -76,7 +76,7 @@ public class PortableCrafterMessage implements IMessage {
                     break;
                 case PortableCrafterMessage.OPEN_CRAFTER:
                     EntityPlayer player = ctx.getServerHandler().playerEntity;
-                    player.openGui(PortableCrafting.instance, Reference.GUI_ENUM.PORTABLE_CRAFTER.ordinal(), player.worldObj, (int)player.posX, (int)player.posY, (int)player.posZ);
+                    player.openGui(PortableCrafting.instance, Reference.GUI_ENUM.PORTABLE_CRAFTER.ordinal(), player.world, (int)player.posX, (int)player.posY, (int)player.posZ);
                     break;
             }
 

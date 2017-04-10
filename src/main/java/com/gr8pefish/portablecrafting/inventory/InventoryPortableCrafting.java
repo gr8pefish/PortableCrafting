@@ -5,28 +5,31 @@ import com.gr8pefish.portablecrafting.reference.Reference;
 import com.gr8pefish.portablecrafting.util.NBTHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
+import net.minecraft.inventory.ContainerChest;
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
+import net.minecraft.util.NonNullList;
+import net.minecraftforge.items.IItemHandler;
 
 import java.util.UUID;
 
-public class InventoryPortableCrafting extends InventoryCrafting {
+public class InventoryPortableCrafting extends InventoryCrafting { //ToDo: look at forestry, chisel and bits, etc, and switch to IItemHandler
 
     public ItemStack parent;
     public EntityPlayer player;
-
+    private final NonNullList<ItemStack> stackList;
     protected ItemStack[] inventory;
     private Container eventHandler;
 
     // This class gets instantiated when we right click a clipboard. Called from the GuiHandler
     public InventoryPortableCrafting(EntityPlayer player, ItemStack itemStack) {
-        super(null, 3, 3);
-
+        super (new PortableCrafterContainer(player), 3,3); //ToDo: Error is here, w/ instantiation, as Container.getInv() for the listeners has null stacks (or stack overflow as-is)
+//        super(NonNullList.<ItemStack>withSize(width * height, ItemStack.EMPTY);, 3, 3);
         this.parent = itemStack;
         this.player = player;
-
+        this.stackList = NonNullList.withSize(3 * 3, ItemStack.EMPTY); //width * height
         this.inventory = new ItemStack[this.getSizeInventory()];
 
         readFromNBT(parent.getTagCompound());
@@ -43,10 +46,11 @@ public class InventoryPortableCrafting extends InventoryCrafting {
      */
     @Override
     public void setInventorySlotContents(int slotIndex, ItemStack itemStack) {
-        inventory[slotIndex] = itemStack;
-        if (itemStack != null && itemStack.stackSize > getInventoryStackLimit()) {
-            itemStack.stackSize = getInventoryStackLimit();
-        }
+        this.stackList.set(slotIndex, itemStack);
+//        inventory[slotIndex] = itemStack;
+//        if (itemStack != null && itemStack.getCount() > getInventoryStackLimit()) {
+//            itemStack.setCount(getInventoryStackLimit());
+//        }
         eventHandler.onCraftMatrixChanged(this);
     }
 
@@ -71,7 +75,8 @@ public class InventoryPortableCrafting extends InventoryCrafting {
      */
     @Override
     public ItemStack getStackInSlot(int slotIndex) {
-        return slotIndex >= this.getSizeInventory() ? null : this.inventory[slotIndex];
+//        return slotIndex >= this.getSizeInventory() ? null : this.inventory[slotIndex];
+        return slotIndex >= this.getSizeInventory() ? null : this.stackList.get(slotIndex);
     }
 
     /**
@@ -79,7 +84,7 @@ public class InventoryPortableCrafting extends InventoryCrafting {
      */
     @Override
     public int getSizeInventory() {
-        return 9;
+        return stackList.size();
     }
 
     /**
@@ -90,19 +95,19 @@ public class InventoryPortableCrafting extends InventoryCrafting {
      */
     @Override
     public ItemStack decrStackSize(int slotIndex, int amount) {
-        if (this.inventory[slotIndex] != null) {
+        if (!this.stackList.get(slotIndex).isEmpty()) {
             ItemStack itemstack;
 
-            if (this.inventory[slotIndex].stackSize <= amount) {
-                itemstack = this.inventory[slotIndex];
-                this.inventory[slotIndex] = null;
+            if (this.stackList.get(slotIndex).getCount() <= amount) {
+                itemstack = this.stackList.get(slotIndex);
+                this.stackList.set(slotIndex, ItemStack.EMPTY);
                 this.eventHandler.onCraftMatrixChanged(this);
                 return itemstack;
             } else {
-                itemstack = this.inventory[slotIndex].splitStack(amount);
+                itemstack = this.stackList.get(slotIndex).splitStack(amount);
 
-                if (this.inventory[slotIndex].stackSize == 0) {
-                    this.inventory[slotIndex] = null;
+                if (this.stackList.get(slotIndex).getCount() == 0) {
+                    this.stackList.set(slotIndex, ItemStack.EMPTY);
                 }
 
                 this.eventHandler.onCraftMatrixChanged(this);
@@ -180,13 +185,13 @@ public class InventoryPortableCrafting extends InventoryCrafting {
 
             if (nbtTagCompound != null && nbtTagCompound.hasKey(Reference.NBT.SAVED_INVENTORY_TAG)) {
                 NBTTagList tagList = nbtTagCompound.getTagList(Reference.NBT.SAVED_INVENTORY_TAG, 10);
-                this.inventory = new ItemStack[this.getSizeInventory()];
+//                this.inventory = new ItemStack[this.getSizeInventory()];
 
                 for (int i = 0; i < tagList.tagCount(); i++) {
                     NBTTagCompound stackTag = tagList.getCompoundTagAt(i);
                     int j = stackTag.getByte("Slot");
-                    if (i >= 0 && i <= inventory.length) {
-                        this.inventory[j] = ItemStack.loadItemStackFromNBT(stackTag);
+                    if (i >= 0 && i <= this.getSizeInventory()) {
+                        this.stackList.set(j, new ItemStack(stackTag));
                     }
                 }
             }
@@ -213,11 +218,11 @@ public class InventoryPortableCrafting extends InventoryCrafting {
         // Write the ItemStacks in the inventory to NBT
         NBTTagList tagList = new NBTTagList();
 
-        for (int i = 0; i < inventory.length; i++) {
-            if (inventory[i] != null) {
+        for (int i = 0; i < this.getSizeInventory(); i++) {
+            if (!this.stackList.get(i).isEmpty()) {
                 NBTTagCompound tagCompound = new NBTTagCompound();
                 tagCompound.setByte("Slot", (byte) i);
-                inventory[i].writeToNBT(tagCompound);
+                this.stackList.get(i).writeToNBT(tagCompound);
                 tagList.appendTag(tagCompound);
             }
         }

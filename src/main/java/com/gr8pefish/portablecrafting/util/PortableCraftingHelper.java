@@ -32,7 +32,7 @@ public class PortableCraftingHelper {
             }
         }
 
-        if (!player.worldObj.isRemote && crafter != null) {
+        if (!player.world.isRemote && crafter != null) {
             NBTHelper.setUUID(crafter);
         }
 

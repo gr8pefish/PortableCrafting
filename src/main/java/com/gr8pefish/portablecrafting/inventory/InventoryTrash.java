@@ -4,14 +4,15 @@ package com.gr8pefish.portablecrafting.inventory;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.text.ITextComponent;
 
 public class InventoryTrash implements IInventory{
 
-    private ItemStack[] inventory;
+    private NonNullList<ItemStack> inventory;
 
     public void InventoryTrash(){
-        this.inventory = new ItemStack[getSizeInventory()];
+        this.inventory = NonNullList.withSize(1, ItemStack.EMPTY);
     }
 
     /**
@@ -20,6 +21,11 @@ public class InventoryTrash implements IInventory{
     @Override
     public int getSizeInventory() {
         return 1;
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return false;
     }
 
     /**
@@ -92,13 +98,8 @@ public class InventoryTrash implements IInventory{
     @Override
     public void markDirty() {}
 
-    /**
-     * Do not make give this method the name canInteractWith because it clashes with Container
-     *
-     * @param p_70300_1_
-     */
     @Override
-    public boolean isUseableByPlayer(EntityPlayer p_70300_1_) {
+    public boolean isUsableByPlayer(EntityPlayer player) {
         return true;
     }
 

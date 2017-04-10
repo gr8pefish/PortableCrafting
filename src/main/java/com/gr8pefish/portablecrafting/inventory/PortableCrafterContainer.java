@@ -26,9 +26,21 @@ public class PortableCrafterContainer extends Container {
     public InventoryCraftResult craftingResult;
     public InventoryTrash inventoryTrash;
 
+    //near empty constructor for callback in IInventory
+    public PortableCrafterContainer(EntityPlayer player) {
+        this.player = player;
+        this.world = player.world;
+
+        this.craftingMatrix = new InventoryPortableCrafting(player, null);
+        this.craftingMatrix.setEventHandler(this);
+        this.craftingResult = new InventoryCraftResult();
+
+        this.inventoryTrash = new InventoryTrash();
+    }
+
     public PortableCrafterContainer(EntityPlayer player, InventoryPortableCrafting PortableCraftingInventory) {
         this.player = player;
-        this.world = player.worldObj;
+        this.world = player.world;
 
         this.craftingMatrix = PortableCraftingInventory;
         this.craftingMatrix.setEventHandler(this);
@@ -77,7 +89,9 @@ public class PortableCrafterContainer extends Container {
      */
     @Override
     public void onCraftMatrixChanged(IInventory inventory) {
-        craftingResult.setInventorySlotContents(0, CraftingManager.getInstance().findMatchingRecipe(craftingMatrix, world));
+        CraftingManager manager = CraftingManager.getInstance();
+        ItemStack stack = manager.findMatchingRecipe(craftingMatrix, world);
+        craftingResult.setInventorySlotContents(0, stack);
     }
 
 
@@ -89,7 +103,7 @@ public class PortableCrafterContainer extends Container {
     public void onContainerClosed(EntityPlayer player) {
         super.onContainerClosed(player);
 
-        if (!player.worldObj.isRemote) {
+        if (!player.world.isRemote) {
             this.craftingMatrix.onGuiSaved(player);
         }
     }
@@ -147,7 +161,7 @@ public class PortableCrafterContainer extends Container {
             }
 
             // So at this point, itemstack1 only contains items which could not fit when moved
-            if (itemStack1.stackSize == 0) {
+            if (itemStack1.getCount() == 0) {
                 // Empty the from slot if all the items were moved out
                 fromSlot.putStack((ItemStack) null);
             } else {
@@ -156,12 +170,12 @@ public class PortableCrafterContainer extends Container {
             }
 
             // If stack1 and stack are the same size, then nothing could be moved
-            if (itemStack.stackSize == itemStack1.stackSize) {
+            if (itemStack.getCount() == itemStack1.getCount()) {
                 return null;
             }
 
             // Not sure what this does either, seems to just mark the slot as dirty
-            fromSlot.onPickupFromSlot(player, itemStack1);
+//            fromSlot.onPickupFromSlot(player, itemStack1);
         }
         return itemStack;
     }
@@ -188,7 +202,7 @@ public class PortableCrafterContainer extends Container {
             // This stack has not been balanced yet
             if (balancedSlots[i] == false && currentStack != null && currentStack.isStackable()) {
                 int matchingStacks = 1;
-                int totalItems = currentStack.stackSize;
+                int totalItems = currentStack.getCount();
                 matchingSlotIndexes.add(i);
 
                 // It is possible to balance this stack if other stacks are the same type, ignore previous currentStacks
@@ -199,7 +213,7 @@ public class PortableCrafterContainer extends Container {
                     if (tStack != null && PortableCraftingHelper.stacksMatch(currentStack, tStack)) {
                         matchingSlotIndexes.add(j);
                         matchingStacks++;
-                        totalItems += tStack.stackSize;
+                        totalItems += tStack.getCount();
                         balancedSlots[j] = true;
                     }
                 }
@@ -208,9 +222,9 @@ public class PortableCrafterContainer extends Container {
                 int remainingItemSize = totalItems % matchingStacks;
 
                 for (Integer index : matchingSlotIndexes) {
-                    craftingMatrix.getStackInSlot(index).stackSize = balancedItemSize;
+                    craftingMatrix.getStackInSlot(index).setCount(balancedItemSize);
                     if (remainingItemSize > 0) {
-                        craftingMatrix.getStackInSlot(index).stackSize += 1;
+                        craftingMatrix.getStackInSlot(index).grow(1);
                         remainingItemSize--;
                     }
                 }

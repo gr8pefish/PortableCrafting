@@ -10,6 +10,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.settings.GameSettings;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
@@ -54,18 +55,18 @@ public class ItemPortableCrafter extends ItemBase implements IItemHandler {//imp
     /**
      * Called whenever this item is equipped and the right mouse button is pressed. Args: itemStack, world, entityPlayer
      *
-     * @param itemStack - the stack clicked
+     * @param hand - the hand used to click
      * @param world - the world of the event
      * @param player - the player doing the clicking
      */
     @Override
-    public ActionResult<ItemStack> onItemRightClick(ItemStack itemStack, World world, EntityPlayer player, EnumHand hand) {
+    public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand) {
         if (!world.isRemote) {
-            NBTHelper.setUUID(itemStack);
+            NBTHelper.setUUID(player.getHeldItem(hand));
 
             player.openGui(PortableCrafting.instance, 0, world, (int) player.posX, (int) player.posY, (int) player.posZ);
         }
-        return ActionResult.newResult(EnumActionResult.SUCCESS, itemStack);
+        return ActionResult.newResult(EnumActionResult.SUCCESS, player.getHeldItem(hand));
     }
 
     /**

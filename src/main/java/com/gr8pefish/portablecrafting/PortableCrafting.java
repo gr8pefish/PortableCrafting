@@ -7,6 +7,7 @@ import com.gr8pefish.portablecrafting.proxy.CommonProxy;
 import com.gr8pefish.portablecrafting.reference.Reference;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -24,8 +25,8 @@ public class PortableCrafting {
     //Creative Tab
     public static final CreativeTabs creativeTab = new CreativeTabs(Reference.MOD.MODID) {
         @Override
-        public Item getTabIconItem() {
-            return ItemRegistry.portableCrafter;
+        public ItemStack getTabIconItem() {
+            return new ItemStack(ItemRegistry.portableCrafter);
         }
     };
 
