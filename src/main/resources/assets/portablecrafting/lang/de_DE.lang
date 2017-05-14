@@ -1,0 +1,13 @@
+# Item Localizations
+item.portablecrafting:portable_crafter.name=Portabler Hersteller
+item.portablecrafting:subcrafting.blueprints.name=Entwürfe
+item.portablecrafting:subcrafting.crafting_core.name=Herstellungskern
+
+# Creative tab Localization
+itemGroup.portablecrafting=Portable Crafting
+
+# Misc stuff
+crafting.portablecrafting=Portables Herstellen
+
+# Keybindings
+key.open_portable_crafter.desc=Hersteller öffnen
