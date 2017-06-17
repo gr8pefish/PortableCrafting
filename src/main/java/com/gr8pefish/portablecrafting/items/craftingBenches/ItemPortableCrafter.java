@@ -109,4 +109,9 @@ public class ItemPortableCrafter extends ItemBase implements IItemHandler {//imp
     public ItemStack extractItem(int slot, int amount, boolean simulate) {
         return null;
     }
+
+    @Override
+    public int getSlotLimit(int slot) {
+        return 0;
+    }
 }
