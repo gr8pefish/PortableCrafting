@@ -5,11 +5,7 @@ import com.gr8pefish.portablecrafting.util.NBTHelper;
 import com.gr8pefish.portablecrafting.util.PortableCraftingHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.inventory.ClickType;
-import net.minecraft.inventory.Container;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.InventoryCraftResult;
-import net.minecraft.inventory.Slot;
+import net.minecraft.inventory.*;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;
 import net.minecraft.world.World;
@@ -27,7 +23,7 @@ public class PortableCrafterContainer extends Container {
 
     public PortableCrafterContainer(EntityPlayer player, InventoryPortableCrafting PortableCraftingInventory) {
         this.player = player;
-        this.world = player.worldObj;
+        this.world = player.world;
 
         this.craftingMatrix = PortableCraftingInventory;
         this.craftingMatrix.setEventHandler(this);
@@ -72,7 +68,7 @@ public class PortableCrafterContainer extends Container {
      */
     @Override
     public void onCraftMatrixChanged(IInventory inventory) {
-        craftingResult.setInventorySlotContents(0, CraftingManager.getInstance().findMatchingRecipe(craftingMatrix, world));
+        craftingResult.setInventorySlotContents(0, CraftingManager.findMatchingResult(craftingMatrix, world));
     }
 
 
@@ -84,7 +80,7 @@ public class PortableCrafterContainer extends Container {
     public void onContainerClosed(EntityPlayer player) {
         super.onContainerClosed(player);
 
-        if (!player.worldObj.isRemote) {
+        if (!player.world.isRemote) {
             this.craftingMatrix.onGuiSaved(player);
         }
     }
@@ -93,7 +89,7 @@ public class PortableCrafterContainer extends Container {
     public ItemStack slotClick(int slotIndex, int par2, ClickType clickType, EntityPlayer entityPlayer) {
         if (slotIndex >= 0 && slotIndex <= inventoryItemStacks.size()) {
             ItemStack clickedStack = (ItemStack) inventoryItemStacks.get(slotIndex);
-            if (clickedStack != null && clickedStack.getItem() instanceof ItemPortableCrafter && NBTHelper.hasUUID(clickedStack) && NBTHelper.hasUUID(craftingMatrix.parent) && NBTHelper.getUUID(clickedStack).equals(NBTHelper.getUUID(craftingMatrix.parent))) {
+            if (!clickedStack.isEmpty() && clickedStack.getItem() instanceof ItemPortableCrafter && NBTHelper.hasUUID(clickedStack) && NBTHelper.hasUUID(craftingMatrix.parent) && NBTHelper.getUUID(clickedStack).equals(NBTHelper.getUUID(craftingMatrix.parent))) {
                 return null;
             }
         }
@@ -108,7 +104,7 @@ public class PortableCrafterContainer extends Container {
      */
     @Override
     public ItemStack transferStackInSlot(EntityPlayer entityPlayer, int slotIndex) {
-        ItemStack itemStack = null;
+        ItemStack itemStack = ItemStack.EMPTY;
         Slot fromSlot = (Slot) this.inventorySlots.get(slotIndex);
 
         // getHasStack - has stuff and things in it
@@ -120,7 +116,7 @@ public class PortableCrafterContainer extends Container {
             if (slotIndex == 0) {
                 // I guess this is true if there isnt space in the players inventory for the result
                 if (!this.mergeItemStack(itemStack1, 10, 46, false)) {
-                    return null;
+                    return ItemStack.EMPTY;
                 }
                 // I dont really understand what this is doing, at this point the stacks should be identical
                 fromSlot.onSlotChange(itemStack1, itemStack);
@@ -130,33 +126,33 @@ public class PortableCrafterContainer extends Container {
             else if (slotIndex >= 1 && slotIndex <= 9) {
                 if (!this.mergeItemStack(itemStack1, 10, 46, false)) {
                     fromSlot.onSlotChanged();
-                    return null;
+                    return ItemStack.EMPTY;
                 }
             }
 
             // Now we should try to move from the inventory to the crafting matrix
             else if (slotIndex >= 10 && slotIndex < 46) {
                 if (!this.mergeItemStack(itemStack1, 1, 10, false)) {
-                    return null;
+                    return ItemStack.EMPTY;
                 }
             }
 
             // So at this point, itemstack1 only contains items which could not fit when moved
-            if (itemStack1.stackSize == 0) {
+            if (itemStack1.getCount() == 0) {
                 // Empty the from slot if all the items were moved out
-                fromSlot.putStack((ItemStack) null);
+                fromSlot.putStack(ItemStack.EMPTY);
             } else {
                 // Still some items in the stack, let the slot know it has changed
                 fromSlot.onSlotChanged();
             }
 
             // If stack1 and stack are the same size, then nothing could be moved
-            if (itemStack.stackSize == itemStack1.stackSize) {
+            if (itemStack.getCount() == itemStack1.getCount()) {
                 return null;
             }
 
             // Not sure what this does either, seems to just mark the slot as dirty
-            fromSlot.onPickupFromSlot(player, itemStack1);
+            fromSlot.onTake(player, itemStack1);
         }
         return itemStack;
     }
@@ -181,9 +177,9 @@ public class PortableCrafterContainer extends Container {
             ArrayList<Integer> matchingSlotIndexes = new ArrayList<Integer>();
 
             // This stack has not been balanced yet
-            if (balancedSlots[i] == false && currentStack != null && currentStack.isStackable()) {
+            if (!balancedSlots[i] && !currentStack.isEmpty() && currentStack.isStackable()) {
                 int matchingStacks = 1;
-                int totalItems = currentStack.stackSize;
+                int totalItems = currentStack.getCount();
                 matchingSlotIndexes.add(i);
 
                 // It is possible to balance this stack if other stacks are the same type, ignore previous currentStacks
@@ -191,10 +187,10 @@ public class PortableCrafterContainer extends Container {
                     // Now we find how many stacks are stackable with the current one
                     ItemStack tStack = craftingMatrix.getStackInSlot(j);
 
-                    if (tStack != null && PortableCraftingHelper.stacksMatch(currentStack, tStack)) {
+                    if (!tStack.isEmpty() && PortableCraftingHelper.stacksMatch(currentStack, tStack)) {
                         matchingSlotIndexes.add(j);
                         matchingStacks++;
-                        totalItems += tStack.stackSize;
+                        totalItems += tStack.getCount();
                         balancedSlots[j] = true;
                     }
                 }
@@ -203,9 +199,9 @@ public class PortableCrafterContainer extends Container {
                 int remainingItemSize = totalItems % matchingStacks;
 
                 for (Integer index : matchingSlotIndexes) {
-                    craftingMatrix.getStackInSlot(index).stackSize = balancedItemSize;
+                    craftingMatrix.getStackInSlot(index).setCount(balancedItemSize);
                     if (remainingItemSize > 0) {
-                        craftingMatrix.getStackInSlot(index).stackSize += 1;
+                        craftingMatrix.getStackInSlot(index).setCount(craftingMatrix.getStackInSlot(index).getCount() + 1);
                         remainingItemSize--;
                     }
                 }
@@ -246,7 +242,7 @@ public class PortableCrafterContainer extends Container {
         }
     }
 
-    //Inventory Tweaks (need it to be updated to implement)
+    //Inventory Tweaks (need it to be updated to implement) //TODO
 //    @ContainerSectionCallback
 //    @SideOnly(Side.CLIENT)
 //    public Map<ContainerSection, List<Slot>> getContainerSections() {

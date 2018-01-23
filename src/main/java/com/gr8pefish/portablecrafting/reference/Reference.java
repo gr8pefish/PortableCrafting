@@ -14,8 +14,6 @@ public class Reference {
 
         public static final String CLIENT_PROXY = "com.gr8pefish.portablecrafting.proxy.ClientProxy";
         public static final String COMMON_PROXY = "com.gr8pefish.portablecrafting.proxy.CommonProxy";
-
-        public static final String GUI_FACTORY_CLASS = "com.gr8pefish.portablecrafting.client.gui.GuiFactory";
     }
 
     public enum GUI_ENUM {

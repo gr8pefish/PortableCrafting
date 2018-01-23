@@ -39,16 +39,17 @@ public class PortableCrafterButton extends GuiButton {
      * @param mPosY - the y position of the mouse
      */
     @Override
-    public void drawButton(Minecraft minecraft, int mPosX, int mPosY) {
+    public void drawButton(Minecraft minecraft, int mPosX, int mPosY, float partialTicks) {
         if (this.visible) {
             minecraft.getTextureManager().bindTexture(widgetTextures);
 
-            boolean hover = mPosX >= this.xPosition && mPosY >= this.yPosition && mPosX < this.xPosition + this.width && mPosY < this.yPosition + this.height;
+            boolean hover = mPosX >= this.x && mPosY >= this.y && mPosX < this.x + this.width && mPosY < this.y + this.height;
             int h = getHoverState(hover);
 
             int fromLeft = iconOffsetX + (h-1) * 16;
 
-            this.drawTexturedModalRect(this.xPosition, this.yPosition, fromLeft, iconOffsetY, 16, 16);
+            this.drawTexturedModalRect(this.x, this.y, fromLeft, iconOffsetY, 16, 16);
         }
     }
+    
 }

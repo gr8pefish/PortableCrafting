@@ -12,8 +12,9 @@ public class SlotPortableCraftingResult extends SlotCrafting {
     }
 
     @Override
-    public void onPickupFromSlot(EntityPlayer entityPlayer, ItemStack crafted) {
-        super.onPickupFromSlot(entityPlayer, crafted);
+    public ItemStack onTake(EntityPlayer entityPlayer, ItemStack crafted) {
+        super.onTake(entityPlayer, crafted);
+        return crafted;
     }
 
 }

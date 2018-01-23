@@ -1,0 +1,22 @@
+{
+  "result": {
+    "item": "portablecrafting:crafting_core"
+  },
+  "pattern": [
+    "a",
+    "w",
+    "c"
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "a": {
+      "item": "minecraft:apple"
+    },
+    "w": {
+      "item": "minecraft:crafting_table"
+    },
+    "c": {
+      "item": "minecraft:chest"
+    }
+  }
+}

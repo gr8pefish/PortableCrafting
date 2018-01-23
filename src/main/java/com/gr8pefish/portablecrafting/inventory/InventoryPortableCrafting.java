@@ -9,6 +9,7 @@ import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
+import net.minecraft.util.NonNullList;
 
 import java.util.UUID;
 
@@ -17,7 +18,7 @@ public class InventoryPortableCrafting extends InventoryCrafting {
     public ItemStack parent;
     public EntityPlayer player;
 
-    protected ItemStack[] inventory;
+    protected NonNullList<ItemStack> inventory;
     private Container eventHandler;
 
     // This class gets instantiated when we right click a clipboard. Called from the GuiHandler
@@ -27,7 +28,8 @@ public class InventoryPortableCrafting extends InventoryCrafting {
         this.parent = itemStack;
         this.player = player;
 
-        this.inventory = new ItemStack[this.getSizeInventory()];
+
+        this.inventory = NonNullList.withSize(9, ItemStack.EMPTY);
 
         readFromNBT(parent.getTagCompound());
     }
@@ -43,9 +45,9 @@ public class InventoryPortableCrafting extends InventoryCrafting {
      */
     @Override
     public void setInventorySlotContents(int slotIndex, ItemStack itemStack) {
-        inventory[slotIndex] = itemStack;
-        if (itemStack != null && itemStack.stackSize > getInventoryStackLimit()) {
-            itemStack.stackSize = getInventoryStackLimit();
+        inventory.set(slotIndex, itemStack);
+        if (!itemStack.isEmpty() && itemStack.getCount() > getInventoryStackLimit()) {
+            itemStack.setCount(getInventoryStackLimit());
         }
         eventHandler.onCraftMatrixChanged(this);
     }
@@ -71,7 +73,7 @@ public class InventoryPortableCrafting extends InventoryCrafting {
      */
     @Override
     public ItemStack getStackInSlot(int slotIndex) {
-        return slotIndex >= this.getSizeInventory() ? null : this.inventory[slotIndex];
+        return slotIndex >= this.getSizeInventory() ? null : this.inventory.get(slotIndex);
     }
 
     /**
@@ -90,19 +92,19 @@ public class InventoryPortableCrafting extends InventoryCrafting {
      */
     @Override
     public ItemStack decrStackSize(int slotIndex, int amount) {
-        if (this.inventory[slotIndex] != null) {
+        if (!this.inventory.get(slotIndex).isEmpty()) {
             ItemStack itemstack;
 
-            if (this.inventory[slotIndex].stackSize <= amount) {
-                itemstack = this.inventory[slotIndex];
-                this.inventory[slotIndex] = null;
+            if (this.inventory.get(slotIndex).getCount() <= amount) {
+                itemstack = this.inventory.get(slotIndex);
+                this.inventory.set(slotIndex, ItemStack.EMPTY);
                 this.eventHandler.onCraftMatrixChanged(this);
                 return itemstack;
             } else {
-                itemstack = this.inventory[slotIndex].splitStack(amount);
+                itemstack = this.inventory.get(slotIndex).splitStack(amount);
 
-                if (this.inventory[slotIndex].stackSize == 0) {
-                    this.inventory[slotIndex] = null;
+                if (this.inventory.get(slotIndex).getCount() == 0) {
+                    this.inventory.set(slotIndex, ItemStack.EMPTY);
                 }
 
                 this.eventHandler.onCraftMatrixChanged(this);
@@ -180,13 +182,13 @@ public class InventoryPortableCrafting extends InventoryCrafting {
 
             if (nbtTagCompound != null && nbtTagCompound.hasKey(Reference.NBT.SAVED_INVENTORY_TAG)) {
                 NBTTagList tagList = nbtTagCompound.getTagList(Reference.NBT.SAVED_INVENTORY_TAG, 10);
-                this.inventory = new ItemStack[this.getSizeInventory()];
+                this.inventory = NonNullList.withSize(this.getSizeInventory(), ItemStack.EMPTY);
 
                 for (int i = 0; i < tagList.tagCount(); i++) {
                     NBTTagCompound stackTag = tagList.getCompoundTagAt(i);
                     int j = stackTag.getByte("Slot");
-                    if (i >= 0 && i <= inventory.length) {
-                        this.inventory[j] = ItemStack.loadItemStackFromNBT(stackTag);
+                    if (i >= 0 && i <= inventory.size()) {
+                        this.inventory.set(j, new ItemStack(stackTag));
                     }
                 }
             }
@@ -213,11 +215,11 @@ public class InventoryPortableCrafting extends InventoryCrafting {
         // Write the ItemStacks in the inventory to NBT
         NBTTagList tagList = new NBTTagList();
 
-        for (int i = 0; i < inventory.length; i++) {
-            if (inventory[i] != null) {
+        for (int i = 0; i < inventory.size(); i++) {
+            if (!inventory.get(i).isEmpty()) {
                 NBTTagCompound tagCompound = new NBTTagCompound();
                 tagCompound.setByte("Slot", (byte) i);
-                inventory[i].writeToNBT(tagCompound);
+                inventory.get(i).writeToNBT(tagCompound);
                 tagList.appendTag(tagCompound);
             }
         }

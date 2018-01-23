@@ -1,7 +1,6 @@
 package com.gr8pefish.portablecrafting.proxy;
 
 import com.gr8pefish.portablecrafting.handlers.KeyInputEventHandler;
-import com.gr8pefish.portablecrafting.items.ItemRegistry;
 import com.gr8pefish.portablecrafting.reference.Reference;
 import com.gr8pefish.portablecrafting.util.InventoryRenderHelper;
 
@@ -25,7 +24,6 @@ public class ClientProxy extends CommonProxy {
 
         //rendering items
         renderHelper = new InventoryRenderHelper(Reference.MOD.DOMAIN);
-        ItemRegistry.registerRenders();
     }
 
 }

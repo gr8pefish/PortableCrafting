@@ -59,24 +59,24 @@ public class PortableCrafterMessage implements IMessage {
             PortableCrafterContainer container;
             switch (message.action) {
                 case PortableCrafterMessage.BALANCE_MATRIX:
-                    container = (PortableCrafterContainer)ctx.getServerHandler().playerEntity.openContainer;
+                    container = (PortableCrafterContainer)ctx.getServerHandler().player.openContainer;
                     container.balanceMatrix();
                     break;
                 case PortableCrafterMessage.SPIN_MATRIX:
-                    container = (PortableCrafterContainer)ctx.getServerHandler().playerEntity.openContainer;
+                    container = (PortableCrafterContainer)ctx.getServerHandler().player.openContainer;
                     container.spinMatrix();
                     break;
                 case PortableCrafterMessage.SPIN_MATRIX_LEFT:
-                    container = (PortableCrafterContainer)ctx.getServerHandler().playerEntity.openContainer;
+                    container = (PortableCrafterContainer)ctx.getServerHandler().player.openContainer;
                     container.spinMatrix(true);
                     break;
                 case PortableCrafterMessage.CLEAR_MATRIX:
-                    container = (PortableCrafterContainer)ctx.getServerHandler().playerEntity.openContainer;
+                    container = (PortableCrafterContainer)ctx.getServerHandler().player.openContainer;
                     container.clearMatrix();
                     break;
                 case PortableCrafterMessage.OPEN_CRAFTER:
-                    EntityPlayer player = ctx.getServerHandler().playerEntity;
-                    player.openGui(PortableCrafting.instance, Reference.GUI_ENUM.PORTABLE_CRAFTER.ordinal(), player.worldObj, (int)player.posX, (int)player.posY, (int)player.posZ);
+                    EntityPlayer player = ctx.getServerHandler().player;
+                    player.openGui(PortableCrafting.instance, Reference.GUI_ENUM.PORTABLE_CRAFTER.ordinal(), player.world, (int)player.posX, (int)player.posY, (int)player.posZ);
                     break;
             }
 

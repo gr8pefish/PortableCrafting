@@ -1,12 +1,11 @@
 package com.gr8pefish.portablecrafting;
 
 import com.gr8pefish.portablecrafting.handlers.GuiHandler;
-import com.gr8pefish.portablecrafting.items.ItemRegistry;
 import com.gr8pefish.portablecrafting.network.PacketHandler;
 import com.gr8pefish.portablecrafting.proxy.CommonProxy;
 import com.gr8pefish.portablecrafting.reference.Reference;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -14,7 +13,7 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 
-@Mod(modid = com.gr8pefish.portablecrafting.reference.Reference.MOD.MODID, name = Reference.MOD.MOD_NAME, version = Reference.MOD.VERSION, guiFactory = Reference.MOD.GUI_FACTORY_CLASS)
+@Mod(modid = com.gr8pefish.portablecrafting.reference.Reference.MOD.MODID, name = Reference.MOD.MOD_NAME, version = Reference.MOD.VERSION)
 public class PortableCrafting {
 
     //Proxies
@@ -24,8 +23,8 @@ public class PortableCrafting {
     //Creative Tab
     public static final CreativeTabs creativeTab = new CreativeTabs(Reference.MOD.MODID) {
         @Override
-        public Item getTabIconItem() {
-            return ItemRegistry.portableCrafter;
+        public ItemStack getTabIconItem() {
+            return new ItemStack(RegistrarPortableCrafting.PORTABLE_CRAFTER);
         }
     };
 
@@ -39,9 +38,6 @@ public class PortableCrafting {
         //packets
         PacketHandler.init();
 
-        //items
-        ItemRegistry.registerItems();
-
         //init keybindings and renderers
         proxy.preInit();
     }
@@ -52,9 +48,6 @@ public class PortableCrafting {
 
         //Gui Handler
         NetworkRegistry.INSTANCE.registerGuiHandler(instance, new GuiHandler());
-
-        //recipes
-        ItemRegistry.initRecipes();
     }
 
 

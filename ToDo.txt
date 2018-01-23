@@ -1,10 +1,6 @@
 Fix:
 
 Add:
-    Use new forge inventory system
+    Add as crafting table under left hand JEI tabs
 
-    Add JEI clickable arrow for recipes
-
-    general cleanup
-
-    Look into adding trash slot
+    Look into adding trash slot?

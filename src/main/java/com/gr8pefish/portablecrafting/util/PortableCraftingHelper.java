@@ -18,21 +18,21 @@ public class PortableCraftingHelper {
     }
 
     public static ItemStack getPortableCrafter(EntityPlayer player) {
-        ItemStack crafter = null;
+        ItemStack crafter = ItemStack.EMPTY;
 
-        if (player.getHeldItemMainhand() != null && player.getHeldItemMainhand().getItem() instanceof ItemPortableCrafter) {
+        if (!player.getHeldItemMainhand().isEmpty() && player.getHeldItemMainhand().getItem() instanceof ItemPortableCrafter) {
             crafter = player.getHeldItemMainhand();
         } else {
             for (int i = 0; i < player.inventory.getSizeInventory(); i++) {
                 ItemStack stack = player.inventory.getStackInSlot(i);
 
-                if (stack != null && stack.getItem() != null && stack.getItem() instanceof ItemPortableCrafter) {
+                if (!stack.isEmpty() && stack.getItem() instanceof ItemPortableCrafter) {
                     crafter = player.inventory.getStackInSlot(i);
                 }
             }
         }
 
-        if (!player.worldObj.isRemote && crafter != null) {
+        if (!player.world.isRemote && !crafter.isEmpty()) {
             NBTHelper.setUUID(crafter);
         }
 
@@ -42,7 +42,7 @@ public class PortableCraftingHelper {
     //Stack Helper Methods
 
     public static boolean stacksMatch(ItemStack stack1, ItemStack stack2) {
-        if (stack1 == null && stack2 == null)
+        if ((stack1 == null && stack2 == null) || (stack1.isEmpty() && stack2.isEmpty()))
             return true;
 
         // Modified line from Container.java:623

@@ -1,7 +1,7 @@
 {
   "parent": "portablecrafting:item/base_model",
   "textures": {
-    "layer0": "portablecrafting:items/portable_crafter_unity"
+    "layer0": "portablecrafting:items/portable_crafter"
   },
   "display": {
     "firstperson_lefthand": {

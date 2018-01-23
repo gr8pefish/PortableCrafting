@@ -45,8 +45,8 @@ public class PortableCrafterGui extends GuiContainer {
 
     @Override
     protected void drawGuiContainerForegroundLayer(int x, int y) {
-        fontRendererObj.drawString(I18n.translateToLocal("crafting.portablecrafting"), 41, 6, 4210752); //"Portable Crafter" at the top
-        fontRendererObj.drawString(I18n.translateToLocal("container.inventory"), 20, 73, 4210752); //"Inventory" above your inventory
+        fontRenderer.drawString(I18n.translateToLocal("crafting.portablecrafting"), 41, 6, 4210752); //"Portable Crafter" at the top
+        fontRenderer.drawString(I18n.translateToLocal("container.inventory"), 20, 73, 4210752); //"Inventory" above your inventory
     }
 
     @Override
