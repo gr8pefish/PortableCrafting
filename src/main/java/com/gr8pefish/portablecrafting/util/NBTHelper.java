@@ -42,7 +42,7 @@ public class NBTHelper {
     }
 
     public static boolean has_tag(ItemStack itemStack, String tag) {
-        return itemStack != null && itemStack.hasTagCompound() && itemStack.getTagCompound().hasKey(tag);
+        return itemStack != null && !itemStack.isEmpty() && itemStack.hasTagCompound() && itemStack.getTagCompound().hasKey(tag);
     }
 
     public static void setLong(ItemStack itemStack, String tag, Long value) {

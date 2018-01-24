@@ -1,4 +1,10 @@
 ------------------------------------------------------
+PortableCrafting-1.12-1.0.2
+------------------------------------------------------
+- Fixed being able to open Portable Crafter when not in inventory
+- [Internal] Some more cleanup (null -> isEmpty checks)
+
+------------------------------------------------------
 PortableCrafting-1.12-1.0.1
 ------------------------------------------------------
 - Port to 1.12

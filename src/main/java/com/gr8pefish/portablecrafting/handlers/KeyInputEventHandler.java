@@ -32,7 +32,7 @@ public class KeyInputEventHandler {
         if (openCrafter.isPressed()) {
             EntityPlayer player = FMLClientHandler.instance().getClientPlayerEntity();
 
-            if (PortableCraftingHelper.getPortableCrafter(player) != null) {
+            if (!PortableCraftingHelper.getPortableCrafter(player).isEmpty()) {
                 player.openGui(PortableCrafting.instance, Reference.GUI_ENUM.PORTABLE_CRAFTER.ordinal(), player.getEntityWorld(), (int)player.posX, (int)player.posY, (int)player.posZ);
                 PacketHandler.network.sendToServer(new PortableCrafterMessage(PortableCrafterMessage.OPEN_CRAFTER));
             }

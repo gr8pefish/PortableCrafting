@@ -153,7 +153,7 @@ public class InventoryPortableCrafting extends InventoryCrafting {
     //Methods to make sure the stack is unique
 
     public void onGuiSaved(EntityPlayer entityPlayer) {
-        if (parent != null)
+        if (!parent.isEmpty())
             save();
     }
 
@@ -163,7 +163,7 @@ public class InventoryPortableCrafting extends InventoryCrafting {
             for (int i = 0; i < entityPlayer.inventory.getSizeInventory(); i++) {
                 ItemStack itemStack = entityPlayer.inventory.getStackInSlot(i);
 
-                if (itemStack != null && itemStack.getItem() instanceof ItemPortableCrafter && NBTHelper.hasUUID(itemStack)) {
+                if (!itemStack.isEmpty() && itemStack.getItem() instanceof ItemPortableCrafter && NBTHelper.hasUUID(itemStack)) {
                     if (itemStack.getTagCompound().getLong(Reference.NBT.MOST_SIG_UUID) == parentUUID.getMostSignificantBits() &&
                             itemStack.getTagCompound().getLong(Reference.NBT.LEAST_SIG_UUID) == parentUUID.getLeastSignificantBits()) {
                         return itemStack;
@@ -171,13 +171,13 @@ public class InventoryPortableCrafting extends InventoryCrafting {
                 }
             }
         }
-        return null;
+        return ItemStack.EMPTY;
     }
 
     public void readFromNBT(NBTTagCompound nbtTagCompound) {
         parent = findParentItemStack(player);
 
-        if (parent != null) {
+        if (!parent.isEmpty()) {
             nbtTagCompound = parent.getTagCompound();
 
             if (nbtTagCompound != null && nbtTagCompound.hasKey(Reference.NBT.SAVED_INVENTORY_TAG)) {
